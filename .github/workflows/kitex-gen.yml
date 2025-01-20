@@ -1,0 +1,47 @@
+name: Generate Kitex Code on Push
+
+on:
+  push:
+    branches:
+      - main  # 你可以根据需要添加其他分支
+      - feat-**  # 如果其他分支需要类似的生成代码，可以在这里添加
+    paths:
+      - 'idl/**'  # 只有在 idl 文件夹下的文件发生变化时触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 确保获取所有历史记录
+
+      - name: Setup Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.20"
+
+      - name: Install Protobuf Compiler
+        run: |
+          go install github.com/zeromicro/go-zero/tools/goctl@latest
+          go install github.com/cloudwego/kitex/tool/cmd/kitex@latest
+          goctl env check --install --verbose --force
+
+      - name: Generate Kitex Code
+        run: |
+          rm -rf gen  # 清理旧的生成代码
+          export IDL_DIR=./idl
+          chmod 755 /home/runner/go/bin/protoc
+          sh ../build.sh  # 确保 build.sh 脚本能够正确生成代码到 gen 目录
+
+      - name: Commit And Push
+        run: |
+          git config --global user.email "bot@xhpolaris.com"
+          git config --global user.name "GitHub Actions Bot"
+          git add gen
+          git commit -m "Auto-generated Kitex code"
+          git push origin ${{ github.ref }}
