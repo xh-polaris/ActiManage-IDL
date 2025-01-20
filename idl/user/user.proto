@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "user";
+
+import "idl/user/common.proto";
+
+service UserService {
+  // 注册
+  rpc SignUp(SignUpReq) returns (SignUpResp);
+}

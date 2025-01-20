@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "user";
+
+/*
+ * 实体类定义
+ */
+
+// user 用户
+message User {
+  string id = 1; // string, uid
+  string merchant_id = 2; // string, 商户的id
+  string name = 3;  // string, 用户名
+  string phone = 4 ;  // string, 电话
+  string email = 5 ;  // string, 邮件
+  string password = 6;  // string, 数据库中的密码需要存加密后(md5)
+  int64 gender = 7 ;  // int, 默认0未设置, 1男2女
+  int64 birth = 8;  // time, 生日
+  int64 create_time = 9;  // time, 创建时间
+  int64 update_time = 10; // time, 更新时间
+  int64 delete_time = 11; // time, 删除时间
+  int64 status = 12; // int, 状态, 0正常, -1删除
+}
+
+/*
+ * 请求与响应
+ */
+
+// 注册
+message SignUpReq{
+  string merchantId = 1;        // 商家id，确定注册的是哪个商户的账号
+  optional string name = 2;     // 用户名，空则用authId替代
+  string authId = 3;            // 手机号或者邮箱
+  int64 authType = 4;           // 标识注册的类型, 0手机, 1邮箱
+  string password = 5;          // 密码
+  int64 gender = 6;             // 默认0未设置, 1男2女
+}
+
+message SignUpResp {
+  string userId = 1;
+  string accessToken = 2;
+  int64 expireTime = 3;
+}
+
+// 登录
+message SignInReq {
+
+}
+
+message SignInResp {
+
+}

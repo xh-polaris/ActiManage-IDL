@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package core_api;
+
+option go_package = "user";
+
+import "idl/core_api/common.proto";
+import "idl/basic/http.proto";
+
+service CoreApiService {
+
+  /*
+   * 用户相关
+   */
+
+  // 注册
+  rpc SignUp(SignUpReq) returns (SignUpResp) {
+    option(basic.post) = "/user/sign_up";
+  }
+  // 登录
+  rpc SignIn(SignInReq) returns (SignInResp) {
+    option(basic.post) = "/user/sign_in";
+  }
+
+}
