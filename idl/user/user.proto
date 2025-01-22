@@ -51,4 +51,13 @@ service UserService {
   
   // 标记回执为已读
   rpc MarkReceiptRead(MarkReceiptReadReq) returns (MarkReceiptReadResp);
+  
+  // 添加收藏
+  rpc AddFavorite(AddFavoriteReq) returns (AddFavoriteResp);
+  
+  // 取消收藏
+  rpc RemoveFavorite(RemoveFavoriteReq) returns (RemoveFavoriteResp);
+  
+  // 获取收藏列表
+  rpc ListFavorites(ListFavoritesReq) returns (ListFavoritesResp);
 }

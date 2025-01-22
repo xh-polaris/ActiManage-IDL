@@ -58,6 +58,7 @@ message  BookRecord {
   Reservers reserver = 10;
 }
 
+// 回执
 message Receipt {
   string id = 1;
   string user_id = 2;
@@ -67,7 +68,19 @@ message Receipt {
   int64 update_time = 6; // time, 更新时间
   int64 delete_time = 7; // time, 删除时间
   int64 status = 8;      // int, 状态, 0正常, -1删除
-  }
+}
+
+// 收藏活动
+message Favorite {
+  string id = 1;              // string, uid
+  string user_id = 2;         // string, 用户id
+  string activity_id = 3;     // string, 活动id
+  int64 create_time = 4;      // time, 创建时间
+  int64 update_time = 5;      // time, 更新时间
+  int64 delete_time = 6;      // time, 删除时间
+  int64 status = 7;           // int, 状态, 0正常, -1删除
+}
+
 /*
  * 请求与响应
  */
@@ -157,7 +170,7 @@ message DeleteReserverReq {
 }
 
 message DeleteReserverResp {
-  int64 success = 1;       // 删除是否成功,0失败,1成功
+  int64 success = 1;              // 操作是否成功,0失败,1成功
 }
 
 // 获取预约人列表
@@ -175,27 +188,24 @@ message ListReserversResp {
 
 // 创建预约
 message CreateBookingReq {
-    string activity_id = 1;
-    string reserver_id = 2;
-    string book_id = 3;
-    int64 arrival = 4;
-    optional string remark = 5;     // 备注
+    string activity_id = 1;          // 活动ID
+    string reserver_id = 2;          // 预约人ID
+    int64 arrival = 3;               // 到达时间
+    optional string remark = 4;      // 备注
 }
 
 message CreateBookingResp {
-    BookRecord record = 1;                     
+    BookRecord record = 1;           // 预约记录
 }
 
 // 取消预约
 message CancelBookingReq {
-    string activity_id = 1;
-    string reserver_id = 2;
-    string book_id = 3;
-    optional string cancel_reason = 4;         // 取消原因
+    string book_id = 1;                // 预约记录ID
+    optional string cancel_reason = 2;  // 取消原因
 }
 
 message CancelBookingResp {
-    BookRecord record = 1;
+    int64 success = 1;                 // 取消是否成功,0失败,1成功
 }
 
 // 获取预约详情
@@ -203,7 +213,7 @@ message GetBookingDetailReq {
 }
 
 message GetBookingDetailResp {
-  BookRecord record = 1;           // 预约记录详情
+    BookRecord record = 1;           // 预约记录详情
 }
 
 // 获取用户的预约列表
@@ -225,7 +235,7 @@ message DeleteReceiptReq {
 }
 
 message DeleteReceiptResp {
-    int64 success = 1;                  // 删除是否成功,0失败,1成功
+    int64 success = 1;              // 操作是否成功,0失败,1成功
 }
 
 // 获取回执列表
@@ -249,4 +259,35 @@ message MarkReceiptReadReq {
 
 message MarkReceiptReadResp {
     Receipt receipt = 1;               // 更新后的回执信息
+}
+
+// 添加收藏
+message AddFavoriteReq {
+    string activity_id = 1;     // 活动ID
+}
+
+message AddFavoriteResp {
+    Favorite favorite = 1;      // 返回创建的收藏信息
+}
+
+// 取消收藏
+message RemoveFavoriteReq {
+    string activity_id = 1;     // 活动ID
+}
+
+message RemoveFavoriteResp {
+    int64 success = 1;              // 操作是否成功,0失败,1成功
+}
+
+// 获取收藏列表
+message ListFavoritesReq {
+    int64 page_size = 1;       // 每页记录数
+    int64 page = 2;            // 当前页码
+}
+
+message ListFavoritesResp {
+    repeated Favorite favorites = 1;  // 收藏列表
+    int64 total = 2;                 // 总记录数
+    int64 page = 3;                  // 当前页码
+    int64 page_size = 4;             // 每页记录数
 }
