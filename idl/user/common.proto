@@ -24,6 +24,50 @@ message User {
   int64 status = 12; // int, 状态, 0正常, -1删除
 }
 
+// reserver 预约人
+message Reserver {
+  string id = 1;
+  string user_id = 2;
+  string name = 3;
+  int64 gender = 4;
+  string relation = 5; // 与号主关系
+  string phone = 6;
+  string email = 7;
+  int64 birth = 8;  // time, 生日
+  int64 create_time = 9;  // time, 创建时间
+  int64 update_time = 10; // time, 更新时间
+  int64 delete_time = 11; // time, 删除时间
+  int64 status = 12; // int, 状态, 0正常, -1删除
+}
+
+// book_record 预约记录
+message  BookRecord {
+  message Reservers {
+    string reserver_id = 1;
+    int64 cancel = 2;  // 0正常, 1取消
+  }
+  string id = 1;
+  string activity_id = 2;
+  string user_id = 3;
+  int64 arrival = 4;
+  string remark = 5;
+  int64 create_time = 6;  // time, 创建时间
+  int64 update_time = 7;  // time, 更新时间
+  int64 delete_time = 8;  // time, 删除时间
+  int64 status = 9;       // int, 状态, 0正常, -1删除
+  Reservers reserver = 10;
+}
+
+message Receipt {
+  string id = 1;
+  string user_id = 2;
+  string activity_id = 3;
+  string msg = 4;
+  int64 create_time = 5; // time, 创建时间
+  int64 update_time = 6; // time, 更新时间
+  int64 delete_time = 7; // time, 删除时间
+  int64 status = 8;      // int, 状态, 0正常, -1删除
+  }
 /*
  * 请求与响应
  */
@@ -46,9 +90,163 @@ message SignUpResp {
 
 // 登录
 message SignInReq {
-
+  string authId = 1;            // 登录标识
+  int64 authType = 2;           // 标识登录的类型, 0手机, 1邮箱
+  string password = 3;          // 用户的登录密码
 }
 
 message SignInResp {
+  string userId = 1;
+  string accessToken = 2;
+  int64 expireTime = 3;
+}
 
+// 获取用户信息
+message GetUserInfoReq {
+}
+
+message GetUserInfoResp {
+  User user = 1; // 返回用户完整信息(不包含密码)
+}
+
+// 更新用户信息
+message UpdateUserInfoReq {
+  optional string name = 1;    // 用户名
+  optional string phone = 2;   // 电话
+  optional string email = 3;   // 邮件
+  optional int64 gender = 4;   // 性别：0未设置, 1男, 2女
+  optional int64 birth = 5;
+}
+
+message UpdateUserInfoResp {
+  User user = 1;  // 返回更新后的用户信息(不包含密码)
+}
+
+// 添加预约人
+message AddReserverReq {
+  string name = 1;        // 预约人姓名
+  int64 gender = 2;       // 性别：0未设置, 1男, 2女
+  string relation = 3;    // 与号主关系
+  string phone = 4;       // 电话
+  string email = 5;       // 邮箱
+  optional int64 birth = 6;
+}
+
+message AddReserverResp {
+  Reserver reserver = 1;
+}
+
+// 更新预约人信息
+message UpdateReserverReq {
+  string reserver_id = 1;
+  optional string name = 2;
+  optional int64 gender = 3;
+  optional string relation = 4;
+  optional string phone = 5;
+  optional string email = 6;
+  optional int64 birth = 7;
+}
+
+message UpdateReserverResp {
+  Reserver reserver = 1;
+}
+
+// 删除预约人
+message DeleteReserverReq {
+  string reserver_id = 1;
+}
+
+message DeleteReserverResp {
+  int64 success = 1;       // 删除是否成功,0失败,1成功
+}
+
+// 获取预约人列表
+message ListReserversReq {
+  int64 page_size = 1;    // 每页记录数
+  int64 page = 2;         // 当前页码
+}
+
+message ListReserversResp {
+  repeated Reserver reservers = 1;    // 预约人列表
+  int64 total = 2;                    // 总记录数
+  int64 page = 3;                     // 当前页码
+  int64 page_size = 4;                // 每页记录数
+}
+
+// 创建预约
+message CreateBookingReq {
+    string activity_id = 1;
+    string reserver_id = 2;
+    string book_id = 3;
+    int64 arrival = 4;
+    optional string remark = 5;     // 备注
+}
+
+message CreateBookingResp {
+    BookRecord record = 1;                     
+}
+
+// 取消预约
+message CancelBookingReq {
+    string activity_id = 1;
+    string reserver_id = 2;
+    string book_id = 3;
+    optional string cancel_reason = 4;         // 取消原因
+}
+
+message CancelBookingResp {
+    BookRecord record = 1;
+}
+
+// 获取预约详情
+message GetBookingDetailReq {
+}
+
+message GetBookingDetailResp {
+  BookRecord record = 1;           // 预约记录详情
+}
+
+// 获取用户的预约列表
+message ListUserBookingsReq {
+  int64 page_size = 1;        // 每页记录数
+  int64 page = 2;             // 当前页码
+}
+
+message ListUserBookingsResp {
+    repeated BookRecord records = 1;  // 预约记录列表
+    int64 total = 2;                 // 总记录数
+    int64 page = 3;                  // 当前页码
+    int64 page_size = 4;             // 每页记录数
+}
+
+// 删除回执
+message DeleteReceiptReq {
+    string receipt_id = 1;              
+}
+
+message DeleteReceiptResp {
+    int64 success = 1;                  // 删除是否成功,0失败,1成功
+}
+
+// 获取回执列表
+message ListReceiptsReq {
+    int64 page_size = 1;            // 每页记录数
+    int64 page = 2;                 // 当前页码
+    optional int64 status = 3;      // 可选状态筛选,0未读,1已读,-1删除
+}
+
+message ListReceiptsResp {
+    repeated Receipt receipts = 1;   // 回执列表
+    int64 total = 2;                // 总记录数
+    int64 page = 3;                 // 当前页码
+    int64 page_size = 4;            // 每页记录数
+}
+
+// 标记回执为已读
+message MarkReceiptReadReq {
+    string receipt_id = 1;             // 回执ID
+}
+
+message MarkReceiptReadResp {
+    Receipt receipt = 1;               // 更新后的回执信息
 }

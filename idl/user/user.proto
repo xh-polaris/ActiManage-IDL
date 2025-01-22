@@ -9,4 +9,46 @@ import "idl/user/common.proto";
 service UserService {
   // 注册
   rpc SignUp(SignUpReq) returns (SignUpResp);
+  
+  // 登录
+  rpc SignIn(SignInReq) returns (SignInResp);
+  
+  // 获取用户信息
+  rpc GetUserInfo(GetUserInfoReq) returns (GetUserInfoResp);
+  
+  // 更新用户信息
+  rpc UpdateUserInfo(UpdateUserInfoReq) returns (UpdateUserInfoResp);
+  
+  // 添加预约人
+  rpc AddReserver(AddReserverReq) returns (AddReserverResp);
+  
+  // 更新预约人信息
+  rpc UpdateReserver(UpdateReserverReq) returns (UpdateReserverResp);
+  
+  // 删除预约人
+  rpc DeleteReserver(DeleteReserverReq) returns (DeleteReserverResp);
+  
+  // 获取预约人列表
+  rpc ListReservers(ListReserversReq) returns (ListReserversResp);
+  
+  // 创建预约
+  rpc CreateBooking(CreateBookingReq) returns (CreateBookingResp);
+  
+  // 取消预约
+  rpc CancelBooking(CancelBookingReq) returns (CancelBookingResp);
+  
+  // 获取预约详情
+  rpc GetBookingDetail(GetBookingDetailReq) returns (GetBookingDetailResp);
+  
+  // 获取用户的预约列表
+  rpc ListUserBookings(ListUserBookingsReq) returns (ListUserBookingsResp);
+  
+  // 删除回执
+  rpc DeleteReceipt(DeleteReceiptReq) returns (DeleteReceiptResp);
+  
+  // 获取回执列表
+  rpc ListReceipts(ListReceiptsReq) returns (ListReceiptsResp);
+  
+  // 标记回执为已读
+  rpc MarkReceiptRead(MarkReceiptReadReq) returns (MarkReceiptReadResp);
 }
