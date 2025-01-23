@@ -8,10 +8,10 @@ import "idl/user/common.proto";
 
 service UserService {
   // 注册
-  rpc SignUp(SignUpReq) returns (SignUpResp);
+  rpc UserSignUp(UserSignUpReq) returns (UserSignUpResp);
   
   // 登录
-  rpc SignIn(SignInReq) returns (SignInResp);
+  rpc UserLogin(UserLoginReq) returns (UserLoginResp);
   
   // 获取用户信息
   rpc GetUserInfo(GetUserInfoReq) returns (GetUserInfoResp);
@@ -20,13 +20,13 @@ service UserService {
   rpc UpdateUserInfo(UpdateUserInfoReq) returns (UpdateUserInfoResp);
   
   // 添加预约人
-  rpc AddReserver(AddReserverReq) returns (AddReserverResp);
+  rpc CreateReserver(CreateReserverReq) returns (CreateReserverResp);
   
   // 更新预约人信息
   rpc UpdateReserver(UpdateReserverReq) returns (UpdateReserverResp);
   
   // 删除预约人
-  rpc DeleteReserver(DeleteReserverReq) returns (DeleteReserverResp);
+  rpc DeleteReserver(DeleteReserverReq) returns (Response);
   
   // 获取预约人列表
   rpc ListReservers(ListReserversReq) returns (ListReserversResp);
@@ -35,7 +35,7 @@ service UserService {
   rpc CreateBooking(CreateBookingReq) returns (CreateBookingResp);
   
   // 取消预约
-  rpc CancelBooking(CancelBookingReq) returns (CancelBookingResp);
+  rpc DeleteBooking(DeleteBookingReq) returns (Response);
   
   // 获取预约详情
   rpc GetBookingDetail(GetBookingDetailReq) returns (GetBookingDetailResp);
@@ -44,7 +44,7 @@ service UserService {
   rpc ListUserBookings(ListUserBookingsReq) returns (ListUserBookingsResp);
   
   // 删除回执
-  rpc DeleteReceipt(DeleteReceiptReq) returns (DeleteReceiptResp);
+  rpc DeleteReceipt(DeleteReceiptReq) returns (Response);
   
   // 获取回执列表
   rpc ListReceipts(ListReceiptsReq) returns (ListReceiptsResp);
@@ -53,10 +53,10 @@ service UserService {
   rpc MarkReceiptRead(MarkReceiptReadReq) returns (MarkReceiptReadResp);
   
   // 添加收藏
-  rpc AddFavorite(AddFavoriteReq) returns (AddFavoriteResp);
+  rpc CreateFavorite(CreateFavoriteReq) returns (CreateFavoriteResp);
   
   // 取消收藏
-  rpc RemoveFavorite(RemoveFavoriteReq) returns (RemoveFavoriteResp);
+  rpc DeleteFavorite(DeleteFavoriteReq) returns (Response);
   
   // 获取收藏列表
   rpc ListFavorites(ListFavoritesReq) returns (ListFavoritesResp);
