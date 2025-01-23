@@ -4,4 +4,106 @@ package system;
 
 option go_package = "system";
 
-//
+/*
+ * 实体定义
+ */
+
+// 开业时间
+message Opening {
+  int32 start_day = 1;     // 开始周几
+  int32 end_day = 2;       // 结束周几
+  int64 start_time = 3;    // 开始营业时间
+  int64 end_time = 4;      // 结束营业时间
+}
+
+// 地点定位
+message Location {
+  string text = 1;         // 地点文字描述
+  double longitude = 2;    // 经度
+  double latitude = 3;     // 纬度
+}
+
+// 商家
+message Merchant {
+  string id = 1;           // uid
+  string name = 2;         // 名称
+  repeated Opening openings = 3; // 营业时间
+  string contact = 4;      // 联系方式
+  Location location = 5;   // 地点
+  string description = 6;  // 描述
+  repeated string licences = 7; // 证件照片
+  string password = 8;     // 默认密码就是联系方式
+  int64 create_time = 9;   // 创建时间
+  int64 update_time = 10;  // 更新时间
+  int64 delete_time = 11;  // 删除时间
+  int32 status = 12;       // 状态, 0正常, -1删除
+}
+
+// 页眉设置
+message Header {
+  int64 type = 1;           // 类型
+  repeated string rgb = 2;  // 颜色设置
+}
+
+// 封面图设置
+message Covers {
+  int32 type = 1;           // 类型
+  repeated string imgs = 2; // 图片列表
+}
+
+// 页脚设置
+message Footer {
+  repeated string imgs = 1; // 图片列表
+}
+
+// 页面设置
+message Setting {
+  string id = 1;           // uid
+  string merchant_id = 2;  // uid
+  Header header = 3;       // 页眉设置
+  Covers covers = 4;       // 轮播图设置
+  Footer footer = 5;       // 页脚设置
+  int64 create_time = 6;   // 创建时间
+  int64 update_time = 7;   // 更新时间
+  int64 delete_time = 8;   // 删除时间
+  int32 status = 9;        // 状态, 0正常, -1删除
+}
+
+// 活动设置
+message ActivitySetting {
+  int32 max = 1;           // 预约上限
+  int64 start = 2;         // 开始时间
+  int64 end = 3;           // 结束时间
+}
+
+// 活动
+message Activity {
+  string id = 1;           // mongo中的十六进制uid
+  string merchant_id = 2;  // 商户的id
+  string name = 3;          // 活动名称
+  repeated string cover = 4; // 封面
+  int32 book = 5;          // 是否可预约, 0不可预约, 1可预约
+  int64 book_start = 6;    // 可预约的开始时间
+  int64 book_end = 7;      // 可预约的结束时间
+  repeated Setting setting = 8; // 活动设置
+  Location location = 9;   // 地点
+  int32 top = 10;          // 是否置顶, 0否, 1置顶
+  string phone = 11;       // 电话
+  string description = 12; // 活动详情
+  string notice = 13;      // 预约须知
+  int64 create_time = 14;  // 创建时间
+  int64 update_time = 15;  // 更新时间
+  int64 delete_time = 16;  // 删除时间
+  int32 status = 17;       // 状态, 0正常, -1删除
+}
+
+// 管理员
+message Admin {
+  string id = 1;           // uid
+  string auth = 2;         // 账号
+  string password = 3;     // 密码
+  int64 create_time = 4;   // 创建时间
+  int64 update_time = 5;   // 更新时间
+  int64 delete_time = 6;   // 删除时间
+  int32 status = 7;        // 状态, 0正常, -1删除
+}
