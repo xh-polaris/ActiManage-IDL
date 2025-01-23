@@ -282,7 +282,6 @@ message DeleteFavoriteReq {
     string activityId = 1;     // 活动ID
 }
 
-
 // 获取收藏列表
 message ListFavoritesReq {
   basic.Paging paging = 1;

@@ -6,6 +6,7 @@ option go_package = "user";
 
 import "idl/user/common.proto";
 
+
 service UserService {
   // 注册
   rpc UserSignUp(UserSignUpReq) returns (UserSignUpResp);
