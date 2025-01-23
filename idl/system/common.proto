@@ -4,16 +4,18 @@ package system;
 
 option go_package = "system";
 
+import "idl/basic/paging.proto";
+
 /*
  * 实体定义
  */
 
 // 开业时间
 message Opening {
-  int32 start_day = 1;     // 开始周几
-  int32 end_day = 2;       // 结束周几
-  int64 start_time = 3;    // 开始营业时间
-  int64 end_time = 4;      // 结束营业时间
+  int32 startDat = 1;     // 开始周几
+  int32 endDat = 2;       // 结束周几
+  int64 startTime = 3;    // 开始营业时间
+  int64 endTime = 4;      // 结束营业时间
 }
 
 // 地点定位
@@ -33,9 +35,9 @@ message Merchant {
   string description = 6;  // 描述
   repeated string licences = 7; // 证件照片
   string password = 8;     // 默认密码就是联系方式
-  int64 create_time = 9;   // 创建时间
-  int64 update_time = 10;  // 更新时间
-  int64 delete_time = 11;  // 删除时间
+  int64 createTime = 9;   // 创建时间
+  int64 updateTime = 10;  // 更新时间
+  int64 deleteTime = 11;  // 删除时间
   int32 status = 12;       // 状态, 0正常, -1删除
 }
 
@@ -59,13 +61,13 @@ message Footer {
 // 页面设置
 message Setting {
   string id = 1;           // uid
-  string merchant_id = 2;  // uid
+  string merchantId = 2;  // uid
   Header header = 3;       // 页眉设置
   Covers covers = 4;       // 轮播图设置
   Footer footer = 5;       // 页脚设置
-  int64 create_time = 6;   // 创建时间
-  int64 update_time = 7;   // 更新时间
-  int64 delete_time = 8;   // 删除时间
+  int64 createTime = 6;   // 创建时间
+  int64 updateTime = 7;   // 更新时间
+  int64 deleteTime = 8;   // 删除时间
   int32 status = 9;        // 状态, 0正常, -1删除
 }
 
@@ -79,21 +81,21 @@ message ActivitySetting {
 // 活动
 message Activity {
   string id = 1;           // mongo中的十六进制uid
-  string merchant_id = 2;  // 商户的id
+  string merchantId = 2;  // 商户的id
   string name = 3;          // 活动名称
   repeated string cover = 4; // 封面
   int32 book = 5;          // 是否可预约, 0不可预约, 1可预约
-  int64 book_start = 6;    // 可预约的开始时间
-  int64 book_end = 7;      // 可预约的结束时间
+  int64 bookStart = 6;    // 可预约的开始时间
+  int64 bookEnd = 7;      // 可预约的结束时间
   repeated Setting setting = 8; // 活动设置
   Location location = 9;   // 地点
   int32 top = 10;          // 是否置顶, 0否, 1置顶
   string phone = 11;       // 电话
   string description = 12; // 活动详情
   string notice = 13;      // 预约须知
-  int64 create_time = 14;  // 创建时间
-  int64 update_time = 15;  // 更新时间
-  int64 delete_time = 16;  // 删除时间
+  int64 createTime = 14;  // 创建时间
+  int64 updateTime = 15;  // 更新时间
+  int64 deleteTime = 16;  // 删除时间
   int32 status = 17;       // 状态, 0正常, -1删除
 }
 
@@ -102,8 +104,158 @@ message Admin {
   string id = 1;           // uid
   string auth = 2;         // 账号
   string password = 3;     // 密码
-  int64 create_time = 4;   // 创建时间
-  int64 update_time = 5;   // 更新时间
-  int64 delete_time = 6;   // 删除时间
+  int64 createTime = 4;   // 创建时间
+  int64 updateTime = 5;   // 更新时间
+  int64 deleteTime = 6;   // 删除时间
   int32 status = 7;        // 状态, 0正常, -1删除
+}
+
+/*
+ * 消息定义
+ */
+
+// 商户登录
+message MerchantLoginReq {
+  string authId = 1;                  // 登录账号
+  string authType = 2;                // 登录方式
+  optional string verifyCode = 3;     // 验证码
+  optional string password = 4;       // 密码
+}
+
+message MerchantLoginResp {
+  int64 code = 1;
+  string msg = 2;
+  string userId = 3;
+  string accessToken = 4;
+  int64 expireTime = 5;
+}
+
+// 商户修改密码
+message MerchantSetPasswordReq{
+  string id = 1;
+  string oldPassword = 2;
+  string newPassword = 3;
+}
+
+// 修改页眉设置
+message UpdateHeaderReq {
+  string id = 1;
+  Header header = 2;
+}
+
+// 修改封面
+message UpdateCoverReq {
+  string id = 1;
+  Covers covers = 2;
+}
+
+// 修改页脚
+message UpdateFooterReq {
+  string id = 1;
+  Footer footer = 2;
+}
+
+// 创建活动
+message CreateActivityReq {
+  string merchantId = 1;         // 商户id
+  string name = 2;               // 活动名
+  int32 book = 3;                // 是否可预约, 0不可预约, 1可预约
+  int64 bookStart = 4;           // 可预约的开始时间
+  int64 bookEnd = 5;             // 可预约的结束时间
+  repeated Setting setting = 6;  // 活动设置
+  Location location = 7;         // 地点
+  int32 top = 8;                // 是否置顶, 0否, 1置顶
+  string phone = 9;             // 电话
+  string description = 10;       // 活动详情
+  string notice = 11;            // 预约须知
+}
+
+// 改变活动置顶状态
+message TopActivityReq {
+  string id = 1;
+}
+
+// 删除活动
+message DeleteActivityReq {
+  string id = 1;
+}
+
+// 更新活动
+message UpdateActivityReq {
+  string merchantId = 1;
+  Activity activity = 2;
+}
+
+// 获取活动列表
+message ListActivitiesReq {
+  basic.Paging paging = 1;
+}
+
+message ListActivitiesResp {
+  int64 code = 1;
+  string msg = 2;
+  repeated Activity activities = 3;
+  int64 total = 4;
+}
+
+// 获取活动详情
+message GetActivityReq {
+  string id = 1;
+}
+
+// 获取活动响应
+message GetActivityResp {
+  Activity activity = 1;
+}
+
+// 管理员登录
+message AdminLoginReq {
+  string authId = 1;                  // 登录账号
+  string authType = 2;                // 登录方式
+  optional string verifyCode = 3;     // 验证码
+  optional string password = 4;       // 密码
+}
+
+message AdminLoginResp {
+  int64 code = 1;
+  string msg = 2;
+  string userId = 3;
+  string accessToken = 4;
+  int64 expireTime = 5;
+}
+
+// 管理员修改密码
+message AdminSetPasswordReq{
+  string id = 1;
+  string oldPassword = 2;
+  string newPassword = 3;
+}
+
+// 创建商家账号
+message CreateMerchantReq {
+  string adminId = 1;      // 管理员id
+  string name = 2;         // 名称
+  repeated Opening openings = 3; // 营业时间
+  string contact = 4;      // 联系方式
+  Location location = 5;   // 地点
+  string description = 6;  // 描述
+  repeated string licences = 7; // 证件照片
+}
+
+// 更新商家信息
+message UpdateMerchantReq {
+  string adminId = 1;
+  Merchant merchant = 2;
+}
+
+// 删除商家
+message DeleteMerchantReq {
+  string adminId = 1;
+  string merchantId = 2;
+}
+
+// 统一响应
+message Response {
+  int64 code = 1;
+  string msg = 2;
 }
