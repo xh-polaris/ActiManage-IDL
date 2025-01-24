@@ -36,7 +36,7 @@ jobs:
           rm -rf gen  # 清理旧的生成代码
           export IDL_DIR=./idl
           chmod 755 /home/runner/go/bin/protoc
-          sh ../build.sh  # 确保 build.sh 脚本能够正确生成代码到 gen 目录
+          sh ./github/build.sh  # 确保 build.sh 脚本能够正确生成代码到 gen 目录  
 
       - name: Commit And Push
         run: |
