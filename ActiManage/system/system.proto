@@ -4,7 +4,7 @@ package system;
 
 option go_package = "system";
 
-import "idl/system/common.proto";
+import "ActiManage/system/common.proto";
 
 service SystemService {
   // 商户登录

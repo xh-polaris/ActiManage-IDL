@@ -4,8 +4,8 @@ package core_api;
 
 option go_package = "user";
 
-import "idl/core_api/common.proto";
-import "idl/basic/http.proto";
+import "ActiManage/core_api/common.proto";
+import "basic/http.proto";
 
 service CoreApiService {
 

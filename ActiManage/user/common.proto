@@ -4,7 +4,7 @@ package user;
 
 option go_package = "user";
 
-import "idl/basic/paging.proto";
+import "basic/paging.proto";
 /*
  * 实体类定义
  */

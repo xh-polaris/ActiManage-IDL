@@ -4,7 +4,7 @@ package user;
 
 option go_package = "user";
 
-import "idl/user/common.proto";
+import "ActiManage/user/common.proto";
 
 
 service UserService {
