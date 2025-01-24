@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package system;
+
+option go_package = "system";
+
+import "idl/system/common.proto";
+
+service SystemService {
+  // 商户登录
+  rpc MerchantLogin(MerchantLoginReq) returns (MerchantLoginResp);
+  // 商户修改密码
+  rpc MerchantSetPassword(MerchantSetPasswordReq) returns (Response);
+  // 修改页眉设置
+  rpc UpdateHeader(UpdateHeaderReq) returns (Response);
+  // 修改封面
+  rpc UpdateCover(UpdateCoverReq) returns (Response);
+  // 修改页脚
+  rpc UpdateFooter(UpdateFooterReq) returns (Response);
+  // 创建活动
+  rpc CreateActivity(CreateActivityReq) returns (Response);
+  // 改变活动置顶状态
+  rpc TopActivity(TopActivityReq) returns (Response);
+  // 删除活动
+  rpc DeleteActivity(DeleteActivityReq) returns (Response);
+  // 更新活动
+  rpc UpdateActivity(UpdateActivityReq) returns (Response);
+  // 获取活动列表
+  rpc ListActivities(ListActivitiesReq) returns (ListActivitiesResp);
+  // 获取活动详情
+  rpc GetActivity(GetActivityReq) returns (GetActivityResp);
+
+  // 管理员登录
+  rpc AdminLogin(AdminLoginReq) returns (AdminLoginResp);
+  // 管理员修改密码
+  rpc AdminSetPassword(AdminSetPasswordReq) returns (Response);
+  // 创建商家账号
+  rpc CreateMerchant(CreateMerchantReq) returns (Response);
+  // 更新商家信息
+  rpc UpdateMerchant(UpdateMerchantReq) returns (Response);
+  // 删除商家
+  rpc DeleteMerchant(DeleteMerchantReq) returns (Response);
+}
