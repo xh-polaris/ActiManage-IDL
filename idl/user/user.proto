@@ -6,7 +6,45 @@ option go_package = "user";
 
 import "idl/user/common.proto";
 
+
 service UserService {
   // 注册
-  rpc SignUp(SignUpReq) returns (SignUpResp);
+  rpc UserSignUp(UserSignUpReq) returns (UserSignUpResp);
+  // 登录
+  rpc UserLogin(UserLoginReq) returns (UserLoginResp);
+  // 获取用户信息
+  rpc GetUserInfo(GetUserInfoReq) returns (GetUserInfoResp);
+  // 更新用户信息
+  rpc UpdateUserInfo(UpdateUserInfoReq) returns (Response);
+
+  // 添加预约人
+  rpc CreateReserver(CreateReserverReq) returns (Response);
+  // 删除预约人
+  rpc DeleteReserver(DeleteReserverReq) returns (Response);
+  // 更新预约人信息
+  rpc UpdateReserver(UpdateReserverReq) returns (Response);
+  // 获取预约人列表
+  rpc ListReservers(ListReserversReq) returns (ListReserversResp);
+  // 创建预约
+  rpc CreateBooking(CreateBookRecordReq) returns (Response);
+  // 取消预约
+  rpc DeleteBooking(DeleteBookRecordReq) returns (Response);
+  // 获取预约详情
+  rpc GetBookingDetail(GetBookRecordReq) returns (GetBookRecordResp);
+  // 获取用户的预约列表
+  rpc ListBookRecordsByUser(ListBookRecordsByUserReq) returns (ListBookRecordsByUserResp);
+
+  // 创建回执
+  rpc CreateReceipt(CreateReceiptReq) returns (Response);
+  // 删除回执
+  rpc DeleteReceipt(DeleteReceiptReq) returns (Response);
+  // 获取回执列表
+  rpc ListReceipts(ListReceiptsReq) returns (ListReceiptsResp);
+  // 已读回执
+  rpc MarkReceiptRead(MarkReceiptReadReq) returns (Response);
+
+  // 添加收藏
+  rpc CreateFavorite(CreateFavoriteReq) returns (Response);
+  // 取消收藏
+  rpc CancelFavorite(CancelFavoriteReq) returns (Response);
 }

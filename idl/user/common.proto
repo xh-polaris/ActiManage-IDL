@@ -4,24 +4,84 @@ package user;
 
 option go_package = "user";
 
+import "idl/basic/paging.proto";
 /*
  * 实体类定义
  */
 
-// user 用户
+// 用户
 message User {
-  string id = 1; // string, uid
-  string merchant_id = 2; // string, 商户的id
-  string name = 3;  // string, 用户名
-  string phone = 4 ;  // string, 电话
-  string email = 5 ;  // string, 邮件
-  string password = 6;  // string, 数据库中的密码需要存加密后(md5)
-  int64 gender = 7 ;  // int, 默认0未设置, 1男2女
-  int64 birth = 8;  // time, 生日
-  int64 create_time = 9;  // time, 创建时间
-  int64 update_time = 10; // time, 更新时间
-  int64 delete_time = 11; // time, 删除时间
-  int64 status = 12; // int, 状态, 0正常, -1删除
+  string id = 1;          // string, uid
+  string merchantId = 2;  // string, 商户的id
+  string name = 3;        // string, 用户名
+  string phone = 4 ;      // string, 电话
+  string email = 5 ;      // string, 邮件
+  string password = 6;    // string, 数据库中的密码需要存加密后(Bcrypt)
+  int64 gender = 7 ;      // int, 默认0未设置, 1男2女
+  int64 birth = 8;        // time, 生日
+  int64 createTime = 9;   // time, 创建时间
+  int64 updateTime = 10;  // time, 更新时间
+  int64 deleteTime = 11;  // time, 删除时间
+  int64 status = 12;      // int, 状态, 0正常, -1删除
+}
+
+// 预约人
+message Reserver {
+  string id = 1;
+  string userId = 2;
+  string name = 3;
+  int64 gender = 4;
+  string relation = 5;    // 与号主关系
+  string phone = 6;
+  string email = 7;
+  int64 birth = 8;        // time, 生日
+  int64 createTime = 9;   // time, 创建时间
+  int64 updateTime = 10;  // time, 更新时间
+  int64 deleteTime = 11;  // time, 删除时间
+  int64 status = 12;      // int, 状态, 0正常, -1删除
+}
+
+// 预约人条目
+message BookItem {
+  string reserverId = 1;  // 预约人id
+  int64 cancel = 2;       // 0正常, 1取消
+}
+
+// 预约记录
+message  BookRecord {
+  string id = 1;
+  string activityId = 2;
+  string userId = 3;
+  repeated BookItem reservers = 4;  // 预约人列表
+  int64 arrival = 5;
+  string remark = 6;
+  int64 createTime = 7;  // time, 创建时间
+  int64 updateTime = 8;  // time, 更新时间
+  int64 deleteTime = 9;  // time, 删除时间
+  int64 status = 10;     // int, 状态, 0正常, -1删除
+}
+
+// 回执
+message Receipt {
+  string id = 1;
+  string userId = 2;
+  string activityId = 3;
+  string msg = 4;         // 回执内容
+  int64 createTime = 5;   // time, 创建时间
+  int64 updateTime = 6;   // time, 更新时间
+  int64 deleteTime = 7;   // time, 删除时间
+  int64 status = 8;       // int, 0未读, -1删除, 1已读
+}
+
+// 收藏活动
+message Favorite {
+  string id = 1;           // string, uid
+  string userId = 2;       // string, 用户id
+  string activityId = 3;   // string, 活动id
+  int64 createTime = 4;    // time, 创建时间
+  int64 updateTime = 5;    // time, 更新时间
+  int64 deleteTime = 6;    // time, 删除时间
+  int64 status = 7;        // int, 状态, 0正常, -1删除, 1取消
 }
 
 /*
@@ -29,26 +89,171 @@ message User {
  */
 
 // 注册
-message SignUpReq{
+message UserSignUpReq{
   string merchantId = 1;        // 商家id，确定注册的是哪个商户的账号
   optional string name = 2;     // 用户名，空则用authId替代
   string authId = 3;            // 手机号或者邮箱
   int64 authType = 4;           // 标识注册的类型, 0手机, 1邮箱
-  string password = 5;          // 密码
-  int64 gender = 6;             // 默认0未设置, 1男2女
+  string verifyCode = 5;        // 验证码
+  string password = 6;          // 密码
+  int64 gender = 7;             // 默认0未设置, 1男2女
 }
 
-message SignUpResp {
-  string userId = 1;
-  string accessToken = 2;
-  int64 expireTime = 3;
+message UserSignUpResp {
+  int64 code = 1;  // 状态码：0成功，非0失败
+  string msg = 2;  // 状态信息
+  string userId = 3;
+  string accessToken = 4;
+  int64 expireTime = 5;
 }
 
 // 登录
-message SignInReq {
-
+message UserLoginReq {
+  string authId = 1;               // 登录标识
+  int64 authType = 2;              // 标识登录的类型, 0手机, 1邮箱
+  optional string verifyCode = 3;  // 验证码
+  optional string password = 4;    // 用户的登录密码
 }
 
-message SignInResp {
+message UserLoginResp {
+  int64 code = 1;  // 状态码：0成功，非0失败
+  string msg = 2;  // 状态信息
+  string userId = 3;
+  string accessToken = 4;
+  int64 expireTime = 5;
+}
 
+// 获取用户信息
+message GetUserInfoReq {
+  string userId = 1;
+}
+
+message GetUserInfoResp {
+  int64 code = 1;      // 状态码：0成功，非0失败
+  string msg = 2;      // 状态信息
+  User user = 3;       // 返回用户完整信息(不包含密码)
+}
+
+// 更新用户信息
+message UpdateUserInfoReq {
+  User user = 1;
+}
+
+// 添加预约人
+message CreateReserverReq {
+  string name = 1;                // 预约人姓名
+  int64 gender = 2;               // 性别：0未设置, 1男, 2女
+  string relation = 3;            // 与号主关系
+  optional string phone = 4;      // 电话
+  optional string email = 5;      // 邮箱
+  optional int64 birth = 6;
+}
+
+// 删除预约人
+message DeleteReserverReq {
+  string reserverId = 1;
+}
+
+// 更新预约人信息
+message UpdateReserverReq {
+  Reserver reserver = 1;
+}
+
+// 获取预约人列表
+message ListReserversReq {
+  string userId = 1;
+  basic.Paging paging = 2;
+}
+
+message ListReserversResp {
+  int64 code = 1;                     // 状态码：0成功，非0失败
+  string msg = 2;                     // 状态信息
+  repeated Reserver reservers = 3;    // 预约人列表
+  int64 total = 4;                    // 总记录数
+}
+
+// 创建预约
+message CreateBookRecordReq {
+  string userId = 1;
+  string activityId = 2;            // 活动ID
+  repeated string reserverIds = 3;  // 预约人ID
+  int64 arrival = 4;                // 到达时间
+  string remark = 5;                // 备注, 默认无
+}
+
+// 取消预约
+message DeleteBookRecordReq {
+  string bookRecordId = 1;       // 预约记录ID
+  string reserverId = 2;         // 预约人id
+}
+
+// 获取预约详情
+message GetBookRecordReq {
+  string bookRecordId = 1;        // 预约记录ID
+}
+
+message GetBookRecordResp {
+  int64 code = 1;                 // 状态码：0成功，非0失败
+  string msg = 2;                 // 状态信息
+  BookRecord record = 3;          // 预约记录详情
+}
+
+// 获取用户的预约列表
+message ListBookRecordsByUserReq {
+  string userId = 1;
+  basic.Paging paging = 2;
+}
+
+message ListBookRecordsByUserResp {
+  int64 code = 1;                   // 状态码：0成功，非0失败
+  string msg = 2;                   // 状态信息
+  repeated BookRecord records = 3;  // 预约记录列表
+  int64 total = 4;                  // 总记录数
+}
+
+// 创建回执
+message CreateReceiptReq {
+  string userId = 1;
+  string activityId = 2;
+  string msg = 3;
+}
+
+// 删除回执
+message DeleteReceiptReq {
+  string receiptId = 1;
+}
+
+// 获取回执列表
+message ListReceiptsReq {
+  string userId = 1;
+  basic.Paging paging = 2;
+}
+
+message ListReceiptsResp {
+  int64 code = 1;                 // 状态码：0成功，非0失败
+  string msg = 2;                 // 状态信息
+  repeated Receipt receipts = 3;  // 回执列表
+  int64 total = 4;                // 总记录数
+}
+
+// 已读回执
+message MarkReceiptReadReq {
+  string receiptId = 1;             // 回执ID
+}
+
+// 添加收藏
+message CreateFavoriteReq {
+  string userId = 1;
+  string activityId = 2;     // 活动ID
+}
+
+// 取消收藏
+message CancelFavoriteReq {
+  string id = 1;
+}
+
+// 统一响应
+message Response {
+  int64 code = 1;
+  string msg = 2;
 }
