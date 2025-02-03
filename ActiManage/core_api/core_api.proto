@@ -10,16 +10,112 @@ import "basic/http.proto";
 service CoreApiService {
 
   /*
-   * 用户相关
+   * 商家部分
    */
 
-  // 注册
-  rpc SignUp(SignUpReq) returns (SignUpResp) {
-    option(basic.post) = "/user/sign_up";
+  // 分页获取活动
+  rpc MerchantListActivities (MerchantListActivitiesReq) returns (MerchantListActivityResp) {
+    option(basic.post) = "/merchant/activity/list";
   }
-  // 登录
-  rpc SignIn(SignInReq) returns (SignInResp) {
-    option(basic.post) = "/user/sign_in";
+
+  // 新建活动
+  rpc MerchantCreateActivity (MerchantCreateActivityReq) returns (MerchantListActivityResp) {
+    option(basic.post) = "/merchant/activity/create";
   }
+
+  // 删除活动
+  rpc MerchantDeleteActivity (MerchantDeleteActivityReq) returns (MerchantListActivityResp) {
+    option(basic.post) = "/merchant/activity/delete";
+  }
+
+  // 置顶活动
+  rpc MerchantTopActivity (MerchantTopActivityReq) returns (MerchantListActivityResp) {
+    option(basic.post) = "/merchant/activity/top";
+  }
+
+  // 商户登录
+  rpc MerchantLogin (MerchantLoginReq) returns (MerchantLoginResp) {
+    option(basic.post) = "/merchant/login";
+  }
+
+  // 获取当前页面设置
+  rpc MerchantGetSetting (MerchantGetSettingReq) returns (MerchantGetSettingResp) {
+    option(basic.get) = "/merchant/setting/get";
+  }
+
+  // 修改页面设置
+  rpc MerchantUpdateSetting (MerchantUpdateSetting) returns (MerchantGetSettingResp) {
+    option(basic.post) = "/merchant/setting/update";
+  }
+
+  // 获取预约管理页
+  rpc MerchantGetBookRecords (MerchantListBookRecordsReq) returns (MerchantListBookRecordsResp) {
+    option(basic.post) = "/merchant/book/list";
+  }
+
+  // 更新商家信息
+  rpc MerchantUpdateInfo (MerchantUpdateInfoReq) returns (MerchantListActivityResp) {
+    option(basic.post) = "/merchant/info/update";
+  }
+
+  // 获取商家信息
+  rpc MerchantGetInfo (MerchantGetInfoReq) returns (MerchantGetInfoResp) {
+    option(basic.get) = "/merchant/info/get";
+  }
+
+  // 设置密码
+  rpc MerchantSetPassword (MerchantSetPasswordReq) returns (MerchantListActivityResp) {
+    option(basic.post) = "/merchant/password/set";
+  }
+
+  /*
+   * 系统部分
+   */
+
+  // 管理员登录
+  rpc SystemLogin (SystemLoginReq) returns (SystemLoginResp) {
+    option(basic.post) = "/system/login";
+  }
+
+  // 获取商家列表
+  rpc SystemListMerchant (SystemListMerchantReq) returns (SystemListMerchantResp) {
+    option(basic.post) = "/system/merchant/list";
+  }
+
+  // 获取单个商家详情
+  rpc SystemGetMerchant (SystemGetMerchantReq) returns (SystemGetMerchantResp) {
+    option(basic.post) = "/system/merchant/get";
+  }
+
+  // 添加商户
+  rpc SystemCreateMerchant (SystemCreateMerchantReq) returns (SystemListMerchantResp) {
+    option(basic.post) = "/system/merchant/create";
+  }
+
+  // 修改商户信息
+  rpc SystemUpdateMerchant (SystemUpdateMerchantReq) returns (SystemListMerchantResp) {
+    option(basic.post) = "/system/merchant/update";
+  }
+
+  // 获取某个商家数据看板
+  rpc SystemGetDashboard (SystemGetDashboardReq) returns (SystemGetDashboardResp) {
+    option(basic.post) = "/system/dashboard/one";
+  }
+
+  // 获取总数据看板
+  rpc SystemGetOverallDashboard (SystemGetOverallDashboardReq) returns (SystemGetOverallDashboardResp) {
+    option(basic.get) = "/system/dashboard/overall";
+  }
+
+  // 获取加签url
+  rpc StsApplySignedUrl (StsApplySignedUrlReq) returns (StsApplySignedUrlResp) {
+    option(basic.post) = "/sts/cos/apply";
+  }
+
+  // AI润色
+  rpc StsAIModify (StsAIModifyReq) returns (StsAIModifyResp) {
+    option(basic.post) = "/sts/ai/modify";
+  }
+
 
 }

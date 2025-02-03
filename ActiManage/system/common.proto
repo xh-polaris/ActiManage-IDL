@@ -29,16 +29,17 @@ message Location {
 message Merchant {
   string id = 1;           // uid
   string name = 2;         // 名称
-  repeated Opening openings = 3; // 营业时间
-  string contact = 4;      // 联系方式
-  Location location = 5;   // 地点
-  string description = 6;  // 描述
-  repeated string licences = 7; // 证件照片
-  string password = 8;     // 默认密码就是联系方式
-  int64 createTime = 9;   // 创建时间
-  int64 updateTime = 10;  // 更新时间
-  int64 deleteTime = 11;  // 删除时间
-  int32 status = 12;       // 状态, 0正常, -1删除
+  string logo = 3;         // 商家logo
+  repeated Opening openings = 4; // 营业时间
+  string phone = 5;      // 联系方式
+  Location location = 6;   // 地点
+  string description = 7;  // 描述
+  repeated string licences = 8; // 证件照片
+  string password = 9;     // 默认密码就是联系方式
+  int64 createTime = 10;   // 创建时间
+  int64 updateTime = 11;  // 更新时间
+  int64 deleteTime = 12;  // 删除时间
+  int32 status = 13;       // 状态, 0正常, -1删除
 }
 
 // 页眉设置
@@ -125,7 +126,7 @@ message MerchantLoginReq {
 message MerchantLoginResp {
   int64 code = 1;
   string msg = 2;
-  string userId = 3;
+  string id = 3;
   string accessToken = 4;
   int64 expireTime = 5;
 }
@@ -205,7 +206,9 @@ message GetActivityReq {
 
 // 获取活动响应
 message GetActivityResp {
-  Activity activity = 1;
+  int64 code = 1;
+  string msg = 2;
+  Activity activity = 3;
 }
 
 // 管理员登录
@@ -236,7 +239,7 @@ message CreateMerchantReq {
   string adminId = 1;      // 管理员id
   string name = 2;         // 名称
   repeated Opening openings = 3; // 营业时间
-  string contact = 4;      // 联系方式
+  string phone = 4;      // 联系方式
   Location location = 5;   // 地点
   string description = 6;  // 描述
   repeated string licences = 7; // 证件照片

@@ -4,25 +4,300 @@ package core_api;
 
 option go_package = "core_api";
 
-/*
- * 请求与响应
- */
+import "basic/paging.proto";
 
-// 注册
-message SignUpReq{
-
+// 设置-页眉
+message Header {
+  string rgb = 1;
 }
 
-message SignUpResp{
-
+// 设置-页脚
+message Footer {
+  repeated string imgs = 1;
 }
 
-// 登录
-message SignInReq {
-
+// 设置-封面
+message Cover {
+  repeated string imgs = 1;
+  int64 type = 2;
 }
 
-message SignInResp {
+// 定位
+message Location {
+  string text = 1;
+  float longitude = 2;
+  float latitude = 3;
+}
+
+// 营业时间
+message Opening {
+  int32 startDat = 1;     // 开始周几
+  int32 endDat = 2;       // 结束周几
+  int64 startTime = 3;    // 开始营业时间
+  int64 endTime = 4;      // 结束营业时间
+}
+
+// 通用响应
+message Response {
   int64 code = 1;
   string msg = 2;
+}
+
+/*
+ * 商家部分
+ */
+
+// 分页获取活动
+message MerchantListActivitiesReq {
+  basic.Paging paging = 1;
+  int64 type = 2;
+}
+
+message MerchantListActivityResp {
+  message Item {
+    string name = 1;
+    int64 top = 2;
+  }
+  int64 code = 1;
+  string msg = 2;
+  repeated Item activities = 3;
+  int64 total = 4;
+}
+
+// 新建活动
+message MerchantCreateActivityReq {
+
+  message activitySetting {
+    int64 max = 1;
+    int64 start = 2;
+    int64 end = 3;
+  }
+
+  string name = 1;
+  optional int64 bookStart = 2;
+  optional int64 bookEnd = 3;
+  string phone = 4;
+  Location location = 5;
+  string description = 6;
+  optional string notice = 7;
+  activitySetting activitySettings = 8;
+  int64 type = 9;
+}
+
+// 删除活动
+message MerchantDeleteActivityReq {
+  string id = 1;
+}
+
+// 置顶活动
+message MerchantTopActivityReq {
+  string id = 1;
+}
+
+// 商户登录
+message MerchantLoginReq {
+  string auth = 1;
+  string password = 2;
+}
+
+message MerchantLoginResp {
+  int64 code = 1;
+  string msg = 2;
+  string id = 3;
+  string accessToken = 4;
+  int64 expireTime = 5;
+}
+
+// 获取当前页面设置
+message MerchantGetSettingReq {
+
+}
+
+message MerchantGetSettingResp {
+  int64 code = 1;
+  string msg = 2;
+  Header header = 3;
+  Footer footer = 4;
+  Cover cover = 5;
+}
+
+// 修改页面设置
+message MerchantUpdateSetting {
+  Header header = 1;
+  Footer footer = 2;
+  Cover cover = 3;
+}
+
+// 获取预约管理页
+message MerchantListBookRecordsReq {
+  basic.Paging paging = 1;
+}
+
+message MerchantListBookRecordsResp {
+  message BookRecord {
+    string id = 1;
+    string activityId = 2;
+    string userId = 3;
+    string name = 4;
+    int64 gender = 5;
+    string phone = 6;
+    string email = 7;
+    string relation = 8;
+    int64 timestamp = 9;
+    int64 arrival = 10;
+    string remark = 11;
+  }
+  message BookRecords {
+    string activityName = 1;
+    repeated BookRecord bookRecords = 2;
+    int64 total = 3;
+  }
+
+  int64 code = 1;
+  string msg = 2;
+  repeated BookRecords bookRecords = 3;
+  int64 total = 4;
+}
+
+// 更新商家信息
+message MerchantUpdateInfoReq {
+  string name = 1;
+  string description = 2;
+  string phone = 3;
+  Location location = 4;
+  repeated Opening openings = 5;
+  repeated string licences = 6;
+}
+
+// 获取商家信息
+message MerchantGetInfoReq {
+}
+
+message MerchantGetInfoResp {
+  int64 code = 1;
+  string msg = 2;
+  string auth = 3;
+  string logo = 4;
+  string name = 5;
+}
+
+// 设置密码
+message MerchantSetPasswordReq {
+  string password = 1;
+  string oldPassword = 2;
+}
+
+/*
+ * 系统部分
+ */
+
+// 管理员登录
+message SystemLoginReq {
+  string authId = 1;
+  string password = 2;
+}
+
+message SystemLoginResp {
+  int64 code = 1;
+  string msg = 2;
+  string id = 3;
+  string accessToken = 4;
+  int64 expireTime = 5;
+}
+
+// 获取商家列表
+message SystemListMerchantReq {
+  basic.Paging paging = 1;
+}
+
+message SystemListMerchantResp {
+  message Item {
+    string id = 1;
+    string name = 2;
+  }
+
+  int64 code = 1;
+  string msg = 2;
+  repeated Item merchants = 3;
+  int64 total = 4;
+}
+
+// 获取单个商家详情
+message SystemGetMerchantReq {
+  string id = 1;
+}
+
+message SystemGetMerchantResp {
+  int64 code = 1;
+  string msg = 2;
+  string name = 3;
+  string description = 4;
+  string phone = 5;
+  Location location = 6;
+  repeated Opening openings = 7;
+  repeated string licences = 8;
+}
+
+// 添加商户
+message SystemCreateMerchantReq {
+  string name = 3;
+  string description = 4;
+  string phone = 5;
+  Location location = 6;
+  repeated Opening openings = 7;
+  repeated string licences = 8;
+}
+
+// 修改商户信息
+message SystemUpdateMerchantReq {
+  string name = 3;
+  string description = 4;
+  string phone = 5;
+  Location location = 6;
+  repeated Opening openings = 7;
+  repeated string licences = 8;
+}
+
+// TODO 获取某个商家数据看板
+message SystemGetDashboardReq {
+  string id = 1;
+}
+
+message SystemGetDashboardResp {
+
+}
+
+// TODO 获取总数据看板
+message SystemGetOverallDashboardReq {
+
+}
+
+message SystemGetOverallDashboardResp {
+
+}
+
+// 获取加签url
+message StsApplySignedUrlReq {
+  string prefix = 1;
+  string suffix = 2;
+}
+
+message StsApplySignedUrlResp {
+  int64 code = 1;
+  string msg = 2;
+  string url = 3;
+  string sessionToken = 4;
+
+}
+
+// AI润色
+message StsAIModifyReq {
+  string text = 1;
+  string lang = 2;
+}
+
+message StsAIModifyResp {
+  int64 code = 1;
+  string msg = 2;
+  string text = 3;
 }

@@ -102,7 +102,7 @@ message UserSignUpReq{
 message UserSignUpResp {
   int64 code = 1;  // 状态码：0成功，非0失败
   string msg = 2;  // 状态信息
-  string userId = 3;
+  string id = 3;
   string accessToken = 4;
   int64 expireTime = 5;
 }
@@ -118,7 +118,7 @@ message UserLoginReq {
 message UserLoginResp {
   int64 code = 1;  // 状态码：0成功，非0失败
   string msg = 2;  // 状态信息
-  string userId = 3;
+  string id = 3;
   string accessToken = 4;
   int64 expireTime = 5;
 }
