@@ -2,34 +2,117 @@ syntax = "proto3";
 
 package core_api;
 
-option go_package = "user";
+option go_package = "userr";
 
 import "ActiManage/core_api/common.proto";
 import "basic/http.proto";
 
 service CoreApiService {
+  /*
+   * 用户部分
+   */
+
+  // 登录 
+  rpc Login (LoginReq) returns (LoginResp) {
+    option (basic.post) = "/user/login";
+  }
+
+  // 注册 
+  rpc SignUp (SignUpReq) returns (SignUpResp) {
+    option (basic.post) = "/user/signup";
+  }
+
+  // 获取当前页面设置 
+  rpc GetSetting (GetSettingReq) returns (GetSettingResp) {
+    option (basic.post) = "/user/settings/get";
+  }
+
+  // 分页获取活动 
+  rpc ListActivities (ListActivities) returns (ListActivitiesResp) {
+    option (basic.post) = "/user/activity/list";
+  }
+
+  // 获取活动详情 
+  rpc GetActivity (GetActivityReq) returns (GetActivityResp) {
+    option (basic.post) = "/user/activity/get";
+  }
+
+  // 收藏 
+  rpc DoFavorite (DoFavoriteReq) returns (Response) {
+    option (basic.post) = "/user/favorite/do";
+  }
+
+  // 取消收藏 
+  rpc CancelFavorite (CancelFavoriteReq) returns (Response) {
+    option (basic.post) = "/user/favorite/cancel";
+  }
+
+  // 创建预约 
+  rpc CreateBooking (CreateBookingReq) returns (Response) {
+    option (basic.post) = "/user/book/create";
+  }
+
+  // 取消预约
+  rpc CancelBookRecord (CancelBookRecordReq) returns (Response) {
+    option (basic.post) = "/user/book/cancel";
+  }
+
+  // 根据预约记录获取活动
+  rpc ListActivitiesByBookRecords (ListBookRecordsReq) returns (ListBookRecordsResp) {
+    option (basic.post) = "/user/book/list/activity";
+  }
+
+  // 获取预约人列表
+  rpc ListReservers (ListReserversReq) returns (ListReserversResp) {
+    option (basic.post) = "/user/reserver/list";
+  }
+
+  // 添加预约人
+  rpc CreateReserver (CreateReserverReq) returns (Response) {
+    option (basic.post) = "/user/reserver/create";
+  }
+
+  // 删除预约人
+  rpc DeleteReserver (DeleteReserverReq) returns (Response) {
+    option (basic.post) = "/user/reserver/delete";
+  }
+
+  // 获取用户信息
+  rpc GetUserInfo (GetUserInfoReq) returns (GetUserInfoResp) {
+    option (basic.get) = "/user/info/get";
+  }
+
+  // 更新用户信息
+  rpc UpdateUserInfo (UpdateUserInfoReq) returns (Response) {
+    option (basic.post) = "/user/info/update";
+  }
+
+  // 更新通知接收状态
+  rpc UpdateNotice (UpdateNoticeReq) returns (Response) {
+    option (basic.post) = "/user/info/notice";
+  }
 
   /*
    * 商家部分
    */
 
   // 分页获取活动
-  rpc MerchantListActivities (MerchantListActivitiesReq) returns (MerchantListActivityResp) {
+  rpc MerchantListActivities (MerchantListActivitiesReq) returns (MerchantListActivitiesResp) {
     option(basic.post) = "/merchant/activity/list";
   }
 
   // 新建活动
-  rpc MerchantCreateActivity (MerchantCreateActivityReq) returns (MerchantListActivityResp) {
+  rpc MerchantCreateActivity (MerchantCreateActivityReq) returns (Response) {
     option(basic.post) = "/merchant/activity/create";
   }
 
   // 删除活动
-  rpc MerchantDeleteActivity (MerchantDeleteActivityReq) returns (MerchantListActivityResp) {
+  rpc MerchantDeleteActivity (MerchantDeleteActivityReq) returns (Response) {
     option(basic.post) = "/merchant/activity/delete";
   }
 
   // 置顶活动
-  rpc MerchantTopActivity (MerchantTopActivityReq) returns (MerchantListActivityResp) {
+  rpc MerchantTopActivity (MerchantTopActivityReq) returns (Response) {
     option(basic.post) = "/merchant/activity/top";
   }
 
@@ -54,7 +137,7 @@ service CoreApiService {
   }
 
   // 更新商家信息
-  rpc MerchantUpdateInfo (MerchantUpdateInfoReq) returns (MerchantListActivityResp) {
+  rpc MerchantUpdateInfo (MerchantUpdateInfoReq) returns (Response) {
     option(basic.post) = "/merchant/info/update";
   }
 
@@ -64,7 +147,7 @@ service CoreApiService {
   }
 
   // 设置密码
-  rpc MerchantSetPassword (MerchantSetPasswordReq) returns (MerchantListActivityResp) {
+  rpc MerchantSetPassword (MerchantSetPasswordReq) returns (Response) {
     option(basic.post) = "/merchant/password/set";
   }
 
@@ -78,7 +161,7 @@ service CoreApiService {
   }
 
   // 获取商家列表
-  rpc SystemListMerchant (SystemListMerchantReq) returns (SystemListMerchantResp) {
+  rpc SystemListMerchant (SystemListMerchantsReq) returns (SystemListMerchantsReq) {
     option(basic.post) = "/system/merchant/list";
   }
 
@@ -88,12 +171,12 @@ service CoreApiService {
   }
 
   // 添加商户
-  rpc SystemCreateMerchant (SystemCreateMerchantReq) returns (SystemListMerchantResp) {
+  rpc SystemCreateMerchant (SystemCreateMerchantReq) returns (Response) {
     option(basic.post) = "/system/merchant/create";
   }
 
   // 修改商户信息
-  rpc SystemUpdateMerchant (SystemUpdateMerchantReq) returns (SystemListMerchantResp) {
+  rpc SystemUpdateMerchant (SystemUpdateMerchantReq) returns (Response) {
     option(basic.post) = "/system/merchant/update";
   }
 

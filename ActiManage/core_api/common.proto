@@ -6,6 +6,29 @@ option go_package = "core_api";
 
 import "basic/paging.proto";
 
+// 预约人
+message Reserver {
+  string id = 1;
+  string userId = 2;
+  string name = 3;
+  int64 gender = 4;
+  string relation = 5;    // 与号主关系
+  string phone = 6;
+  string email = 7;
+  int64 birth = 8;        // time, 生日
+  int64 createTime = 9;   // time, 创建时间
+  int64 updateTime = 10;  // time, 更新时间
+  int64 status = 11;      // int, 状态, 0正常, -1删除
+}
+
+
+// 活动设置
+message ActivitySetting {
+  int64 max = 1;           // 预约上限
+  int64 start = 2;         // 开始时间
+  int64 end = 3;           // 结束时间
+}
+
 // 设置-页眉
 message Header {
   string rgb = 1;
@@ -31,8 +54,8 @@ message Location {
 
 // 营业时间
 message Opening {
-  int32 startDat = 1;     // 开始周几
-  int32 endDat = 2;       // 结束周几
+  int64 startDat = 1;     // 开始周几
+  int64 endDat = 2;       // 结束周几
   int64 startTime = 3;    // 开始营业时间
   int64 endTime = 4;      // 结束营业时间
 }
@@ -44,19 +67,246 @@ message Response {
 }
 
 /*
+ * 用户部分
+ */
+
+// 登录
+message LoginReq {
+  string authId = 1;
+  string authType = 2;
+  optional string verifyCode = 3;
+  optional string password = 4;
+  string merchantId = 5;
+}
+
+message LoginResp {
+  int64 code = 1;
+  string msg = 2;
+  string id = 3;
+  string accessToken = 4;
+  int64 expireTime = 5;
+}
+
+// 注册
+message SignUpReq {
+  string name = 1;
+  string phone = 2;
+  string verifyCode = 3;
+  string email = 4;
+  string password = 5;
+  string merchantId = 6;
+}
+
+message SignUpResp {
+  int64 code = 1;
+  string msg = 2;
+  string id = 3;
+  string accessToken = 4;
+  int64 expireTime = 5;
+}
+
+// 获取当前页面设置
+message GetSettingReq {
+  string merchantId = 1;
+}
+
+message GetSettingResp {
+  int64 code = 1;
+  string msg = 2;
+  Header header = 3;
+  Footer footer = 4;
+  Cover cover = 5;
+}
+
+// 分页获取活动
+message ListActivities {
+  basic.Paging paging = 1;
+  optional int64 type = 2;
+}
+
+message ListActivitiesResp {
+  message Item {
+    string id = 1;             // mongo中的十六进制uid
+    string name = 2;           // 活动名称
+    repeated string cover = 3; // 封面
+    int64 book = 4;            // 是否可预约, 0不可预约, 1可预约
+    int64 bookStart = 5;       // 可预约的开始时间
+    int64 bookEnd = 6;         // 可预约的结束时间
+    repeated ActivitySetting setting = 7; // 活动设置
+    Location location = 8;     // 地点
+    int64 top = 9;            // 是否置顶, 0否, 1置顶
+    int64 createTime = 10;    // 创建时间
+    int64 updateTime = 11;    // 更新时间
+    int64 status = 12;        // 状态, 0正常, -1删除
+    int64 favorite = 13;      // 收藏数
+    int64 view = 14;          // 点击数
+  }
+  int64 code = 1;
+  string msg = 2;
+  repeated Item activities = 3;
+  int64 total = 4;
+}
+
+// 获取活动详情
+message GetActivityReq {
+  string id = 1;
+}
+
+message GetActivityResp {
+  int64 code = 1;
+  string msg = 2;
+  string id = 3;           // mongo中的十六进制uid
+  string merchantId = 4;  // 商户的id
+  string name = 5;          // 活动名称
+  repeated string cover = 6; // 封面
+  int64 book = 7;          // 是否可预约, 0不可预约, 1可预约
+  int64 bookStart = 8;    // 可预约的开始时间
+  int64 bookEnd = 9;      // 可预约的结束时间
+  repeated ActivitySetting setting = 10; // 活动设置
+  Location location = 11;   // 地点
+  int32 top = 12;          // 是否置顶, 0否, 1置顶
+  string phone = 13;       // 电话
+  string description = 14; // 活动详情
+  string notice = 15;      // 预约须知
+  int64 createTime = 16;  // 创建时间
+  int64 updateTime = 17;  // 更新时间
+  int32 status = 18;       // 状态, 0正常, -1删除
+  int64 favorite = 19;      // 收藏数
+  int64 view = 20;          // 点击数
+}
+
+// 收藏
+message DoFavoriteReq {
+  string id = 1;
+}
+
+// 取消收藏
+message CancelFavoriteReq {
+  string id = 1;
+}
+
+// 创建预约
+message CreateBookingReq {
+  string activityId = 1;            // 活动ID
+  repeated string reserverIds = 2;  // 预约人ID
+  int64 arrival = 3;                // 到达时间
+  string remark = 4;                // 备注, 默认无
+}
+
+// 取消预约
+message CancelBookRecordReq {
+  string bookRecordId = 1;
+  string reserverId = 2;
+}
+
+// 获取预约人列表
+message ListReserversReq {
+  basic.Paging paging = 1;
+}
+
+message ListReserversResp {
+  int64 code = 1;                     // 状态码：0成功，非0失败
+  string msg = 2;                     // 状态信息
+  repeated Reserver reservers = 3;    // 预约人列表
+  int64 total = 4;                    // 总记录数
+}
+
+// 添加预约人
+message CreateReserverReq {
+  string name = 1;                // 预约人姓名
+  int64 gender = 2;               // 性别：0未设置, 1男, 2女
+  string relation = 3;            // 与号主关系
+  optional string phone = 4;      // 电话
+  optional string email = 5;      // 邮箱
+  optional int64 birth = 6;
+}
+
+// 删除预约人
+message DeleteReserverReq {
+  string id = 1;
+}
+
+// 获取用户信息
+message GetUserInfoReq {
+}
+
+message GetUserInfoResp {
+  int64 code = 1;
+  string msg = 2;
+  string id = 3;          // string, uid
+  string merchantId = 4;  // string, 商户的id
+  string name = 5;        // string, 用户名
+  string phone = 6;      // string, 电话
+  string email = 7;      // string, 邮件
+  int64 gender = 8;      // int, 默认0未设置, 1男2女
+  int64 birth = 9;        // time, 生日
+  int64 createTime = 10;   // time, 创建时间
+  int64 updateTime = 11;  // time, 更新时间
+  int64 deleteTime = 12;  // time, 删除时间
+  int64 status = 13;      // int, 状态, 0正常, -1删除
+  int64 notice = 14;      // int, 是否接受活动通知，0否，1是
+  string description = 15;// string, 个人简介
+  string avatar = 16;     // string, 头像
+}
+
+// 更新个人信息
+message UpdateUserInfoReq {
+  string name = 1;        // string, 用户名
+  int64 gender = 2;       // int, 默认0未设置, 1男2女
+  int64 birth = 3;        // time, 生日
+  string description = 4;// string, 个人简介
+  string avatar = 5;     // string, 头像
+}
+
+// 更新通知接收状态
+message UpdateNoticeReq {
+  int64 notice = 1;
+}
+
+// 预约记录
+message ListBookRecordsReq {
+  basic.Paging paging = 1;
+  int64 type = 2;         // 类型，0全部，1进行中，2已完成，3已过期
+}
+
+message ListBookRecordsResp {
+  message Item {
+    string id = 1;             // mongo中的十六进制uid
+    string name = 2;           // 活动名称
+    repeated string cover = 3; // 封面
+    int64 book = 4;            // 是否可预约, 0不可预约, 1可预约
+    int64 bookStart = 5;       // 可预约的开始时间
+    int64 bookEnd = 6;         // 可预约的结束时间
+    repeated ActivitySetting setting = 7; // 活动设置
+    Location location = 8;     // 地点
+    int64 top = 9;            // 是否置顶, 0否, 1置顶
+    int64 createTime = 10;    // 创建时间
+    int64 updateTime = 11;    // 更新时间
+    int64 status = 12;        // 状态, 0正常, -1删除
+    int64 favorite = 13;      // 收藏数
+    int64 view = 14;          // 点击数
+  }
+  int64 code = 1;
+  string msg = 2;
+  repeated Item activities = 3;
+  int64 total = 4;
+}
+
+/*
  * 商家部分
  */
 
 // 分页获取活动
 message MerchantListActivitiesReq {
   basic.Paging paging = 1;
-  int64 type = 2;
+  optional int64 type = 2;
 }
 
-message MerchantListActivityResp {
+message MerchantListActivitiesResp {
   message Item {
-    string name = 1;
-    int64 top = 2;
+    string id = 1;
+    string name = 2;
+    int64 top = 3;
   }
   int64 code = 1;
   string msg = 2;
@@ -206,11 +456,11 @@ message SystemLoginResp {
 }
 
 // 获取商家列表
-message SystemListMerchantReq {
+message SystemListMerchantsReq {
   basic.Paging paging = 1;
 }
 
-message SystemListMerchantResp {
+message SystemListMerchantsResp {
   message Item {
     string id = 1;
     string name = 2;

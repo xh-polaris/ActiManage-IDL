@@ -12,8 +12,8 @@ import "basic/paging.proto";
 
 // 开业时间
 message Opening {
-  int32 startDat = 1;     // 开始周几
-  int32 endDat = 2;       // 结束周几
+  int64 startDat = 1;     // 开始周几
+  int64 endDat = 2;       // 结束周几
   int64 startTime = 3;    // 开始营业时间
   int64 endTime = 4;      // 结束营业时间
 }
@@ -39,7 +39,7 @@ message Merchant {
   int64 createTime = 10;   // 创建时间
   int64 updateTime = 11;  // 更新时间
   int64 deleteTime = 12;  // 删除时间
-  int32 status = 13;       // 状态, 0正常, -1删除
+  int64 status = 13;       // 状态, 0正常, -1删除
 }
 
 // 页眉设置
@@ -50,7 +50,7 @@ message Header {
 
 // 封面图设置
 message Covers {
-  int32 type = 1;           // 类型
+  int64 type = 1;           // 类型
   repeated string imgs = 2; // 图片列表
 }
 
@@ -69,12 +69,12 @@ message Setting {
   int64 createTime = 6;   // 创建时间
   int64 updateTime = 7;   // 更新时间
   int64 deleteTime = 8;   // 删除时间
-  int32 status = 9;        // 状态, 0正常, -1删除
+  int64 status = 9;        // 状态, 0正常, -1删除
 }
 
 // 活动设置
 message ActivitySetting {
-  int32 max = 1;           // 预约上限
+  int64 max = 1;           // 预约上限
   int64 start = 2;         // 开始时间
   int64 end = 3;           // 结束时间
 }
@@ -85,10 +85,10 @@ message Activity {
   string merchantId = 2;  // 商户的id
   string name = 3;          // 活动名称
   repeated string cover = 4; // 封面
-  int32 book = 5;          // 是否可预约, 0不可预约, 1可预约
+  int64 book = 5;          // 是否可预约, 0不可预约, 1可预约
   int64 bookStart = 6;    // 可预约的开始时间
   int64 bookEnd = 7;      // 可预约的结束时间
-  repeated Setting setting = 8; // 活动设置
+  repeated ActivitySetting setting = 8; // 活动设置
   Location location = 9;   // 地点
   int32 top = 10;          // 是否置顶, 0否, 1置顶
   string phone = 11;       // 电话

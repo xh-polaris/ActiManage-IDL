@@ -23,6 +23,9 @@ message User {
   int64 updateTime = 10;  // time, 更新时间
   int64 deleteTime = 11;  // time, 删除时间
   int64 status = 12;      // int, 状态, 0正常, -1删除
+  int64 notice = 13;      // int, 是否接受活动通知，0否，1是
+  string description = 14;// string, 个人简介
+  string avatar = 15;     // string, 头像
 }
 
 // 预约人
@@ -141,12 +144,13 @@ message UpdateUserInfoReq {
 
 // 添加预约人
 message CreateReserverReq {
-  string name = 1;                // 预约人姓名
-  int64 gender = 2;               // 性别：0未设置, 1男, 2女
-  string relation = 3;            // 与号主关系
-  optional string phone = 4;      // 电话
-  optional string email = 5;      // 邮箱
-  optional int64 birth = 6;
+  string userId = 1;
+  string name = 2;                // 预约人姓名
+  int64 gender = 3;               // 性别：0未设置, 1男, 2女
+  string relation = 4;            // 与号主关系
+  optional string phone = 5;      // 电话
+  optional string email = 6;      // 邮箱
+  optional int64 birth = 7;
 }
 
 // 删除预约人
@@ -182,7 +186,7 @@ message CreateBookRecordReq {
 }
 
 // 取消预约
-message DeleteBookRecordReq {
+message CancelBookRecordReq {
   string bookRecordId = 1;       // 预约记录ID
   string reserverId = 2;         // 预约人id
 }
@@ -242,7 +246,7 @@ message MarkReceiptReadReq {
 }
 
 // 添加收藏
-message CreateFavoriteReq {
+message DoFavoriteReq {
   string userId = 1;
   string activityId = 2;     // 活动ID
 }

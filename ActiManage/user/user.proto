@@ -26,11 +26,11 @@ service UserService {
   // 获取预约人列表
   rpc ListReservers(ListReserversReq) returns (ListReserversResp);
   // 创建预约
-  rpc CreateBooking(CreateBookRecordReq) returns (Response);
+  rpc CreateBookRecord(CreateBookRecordReq) returns (Response);
   // 取消预约
-  rpc DeleteBooking(DeleteBookRecordReq) returns (Response);
+  rpc CancelBookRecord(CancelBookRecordReq) returns (Response);
   // 获取预约详情
-  rpc GetBookingDetail(GetBookRecordReq) returns (GetBookRecordResp);
+  rpc GetBookRecordDetail(GetBookRecordReq) returns (GetBookRecordResp);
   // 获取用户的预约列表
   rpc ListBookRecordsByUser(ListBookRecordsByUserReq) returns (ListBookRecordsByUserResp);
 
@@ -44,7 +44,7 @@ service UserService {
   rpc MarkReceiptRead(MarkReceiptReadReq) returns (Response);
 
   // 添加收藏
-  rpc CreateFavorite(CreateFavoriteReq) returns (Response);
+  rpc DoFavorite(DoFavoriteReq) returns (Response);
   // 取消收藏
   rpc CancelFavorite(CancelFavoriteReq) returns (Response);
 }
