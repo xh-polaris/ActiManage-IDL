@@ -118,9 +118,7 @@ message Admin {
 // 商户登录
 message MerchantLoginReq {
   string authId = 1;                  // 登录账号
-  string authType = 2;                // 登录方式
-  optional string verifyCode = 3;     // 验证码
-  optional string password = 4;       // 密码
+  string password = 4;       // 密码
 }
 
 message MerchantLoginResp {
