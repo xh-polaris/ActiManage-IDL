@@ -44,8 +44,7 @@ message Merchant {
 
 // 页眉设置
 message Header {
-  int64 type = 1;           // 类型
-  repeated int64 rgb = 2;  // 颜色设置
+  repeated int64 rgb = 1;  // 颜色设置
 }
 
 // 封面图设置
