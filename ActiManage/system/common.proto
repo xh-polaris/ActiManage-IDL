@@ -12,8 +12,8 @@ import "basic/paging.proto";
 
 // 开业时间
 message Opening {
-  int64 startDat = 1;     // 开始周几
-  int64 endDat = 2;       // 结束周几
+  int64 startDay = 1;     // 开始周几
+  int64 endDay = 2;       // 结束周几
   int64 startTime = 3;    // 开始营业时间
   int64 endTime = 4;      // 结束营业时间
 }
