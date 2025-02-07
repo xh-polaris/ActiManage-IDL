@@ -127,7 +127,7 @@ service CoreApiService {
   }
 
   // 修改页面设置
-  rpc MerchantUpdateSetting (MerchantUpdateSetting) returns (MerchantGetSettingResp) {
+  rpc MerchantUpdateSetting (MerchantUpdateSettingReq) returns (MerchantGetSettingResp) {
     option(basic.post) = "/merchant/setting/update";
   }
 

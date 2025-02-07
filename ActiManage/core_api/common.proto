@@ -372,7 +372,7 @@ message MerchantGetSettingResp {
 }
 
 // 修改页面设置
-message MerchantUpdateSetting {
+message MerchantUpdateSettingReq {
   Header header = 1;
   Footer footer = 2;
   Cover cover = 3;
