@@ -125,8 +125,6 @@ message MerchantLoginResp {
   int64 code = 1;
   string msg = 2;
   string id = 3;
-  string accessToken = 4;
-  int64 expireTime = 5;
 }
 
 // 商户修改密码
@@ -221,8 +219,6 @@ message AdminLoginResp {
   int64 code = 1;
   string msg = 2;
   string userId = 3;
-  string accessToken = 4;
-  int64 expireTime = 5;
 }
 
 // 管理员修改密码
