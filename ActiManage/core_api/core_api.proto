@@ -28,7 +28,7 @@ service CoreApiService {
   }
 
   // 分页获取活动 
-  rpc ListActivities (ListActivities) returns (ListActivitiesResp) {
+  rpc ListActivities (ListActivitiesReq) returns (ListActivitiesResp) {
     option (basic.post) = "/user/activity/list";
   }
 

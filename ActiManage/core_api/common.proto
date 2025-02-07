@@ -119,7 +119,7 @@ message GetSettingResp {
 }
 
 // 分页获取活动
-message ListActivities {
+message ListActivitiesReq {
   basic.Paging paging = 1;
   optional int64 type = 2;
 }
