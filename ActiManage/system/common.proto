@@ -234,6 +234,7 @@ message CreateMerchantReq {
   Location location = 5;   // 地点
   string description = 6;  // 描述
   repeated string licences = 7; // 证件照片
+  string logo = 8;
 }
 
 // 更新商家信息
