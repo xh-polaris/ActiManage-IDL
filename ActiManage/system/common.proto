@@ -45,7 +45,7 @@ message Merchant {
 // 页眉设置
 message Header {
   int64 type = 1;           // 类型
-  repeated string rgb = 2;  // 颜色设置
+  repeated int64 rgb = 2;  // 颜色设置
 }
 
 // 封面图设置
@@ -90,14 +90,14 @@ message Activity {
   int64 bookEnd = 7;      // 可预约的结束时间
   repeated ActivitySetting setting = 8; // 活动设置
   Location location = 9;   // 地点
-  int32 top = 10;          // 是否置顶, 0否, 1置顶
+  int64 top = 10;          // 是否置顶, 0否, 1置顶
   string phone = 11;       // 电话
   string description = 12; // 活动详情
   string notice = 13;      // 预约须知
   int64 createTime = 14;  // 创建时间
   int64 updateTime = 15;  // 更新时间
   int64 deleteTime = 16;  // 删除时间
-  int32 status = 17;       // 状态, 0正常, -1删除
+  int64 status = 17;       // 状态, 0正常, -1删除
 }
 
 // 管理员
@@ -108,7 +108,7 @@ message Admin {
   int64 createTime = 4;   // 创建时间
   int64 updateTime = 5;   // 更新时间
   int64 deleteTime = 6;   // 删除时间
-  int32 status = 7;        // 状态, 0正常, -1删除
+  int64 status = 7;        // 状态, 0正常, -1删除
 }
 
 /*
@@ -160,12 +160,12 @@ message UpdateFooterReq {
 message CreateActivityReq {
   string merchantId = 1;         // 商户id
   string name = 2;               // 活动名
-  int32 book = 3;                // 是否可预约, 0不可预约, 1可预约
+  int64 book = 3;                // 是否可预约, 0不可预约, 1可预约
   int64 bookStart = 4;           // 可预约的开始时间
   int64 bookEnd = 5;             // 可预约的结束时间
   repeated Setting setting = 6;  // 活动设置
   Location location = 7;         // 地点
-  int32 top = 8;                // 是否置顶, 0否, 1置顶
+  int64 top = 8;                // 是否置顶, 0否, 1置顶
   string phone = 9;             // 电话
   string description = 10;       // 活动详情
   string notice = 11;            // 预约须知
