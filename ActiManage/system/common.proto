@@ -164,6 +164,7 @@ message CreateActivityReq {
   string phone = 9;             // 电话
   string description = 10;       // 活动详情
   string notice = 11;            // 预约须知
+  repeated string cover = 12;    // 活动封面
 }
 
 // 改变活动置顶状态
