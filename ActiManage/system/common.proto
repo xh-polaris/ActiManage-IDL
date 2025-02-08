@@ -87,7 +87,7 @@ message Activity {
   int64 book = 5;          // 是否可预约, 0不可预约, 1可预约
   int64 bookStart = 6;    // 可预约的开始时间
   int64 bookEnd = 7;      // 可预约的结束时间
-  repeated ActivitySetting setting = 8; // 活动设置
+  ActivitySetting setting = 8; // 活动设置
   Location location = 9;   // 地点
   int64 top = 10;          // 是否置顶, 0否, 1置顶
   string phone = 11;       // 电话
