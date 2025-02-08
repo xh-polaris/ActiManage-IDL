@@ -148,7 +148,12 @@ message GetUserInfoResp {
 
 // 更新用户信息
 message UpdateUserInfoReq {
-  User user = 1;
+  string id = 1;
+  string name = 2;
+  int64 gender = 3;
+  int64 birth = 4;
+  string description = 5;
+  string avatar = 6;
 }
 
 // 用户修改密码
