@@ -54,7 +54,7 @@ service UserService {
   // 创建访问
   rpc CreateView(CreateViewReq) returns (Response);
   // 增加访问
-  rpc IncView(IncViewReq) returns (IncViewReq);
+  rpc IncView(IncViewReq) returns (IncViewResp);
   // 获取活动收藏与访问统计
   rpc GetFavoriteAndViewOfActivity(GetFavoriteAndViewOfActivityReq) returns (GetFavoriteAndViewOfActivityResp);
   // 获取商家访问
