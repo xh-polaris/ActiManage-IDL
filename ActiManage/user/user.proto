@@ -18,6 +18,8 @@ service UserService {
   rpc UpdateUserInfo(UpdateUserInfoReq) returns (Response);
   // 设置密码
   rpc SetPassword(SetPasswordReq) returns (Response);
+  // 更改通知信息接收状态
+  rpc SetNotice(SetNoticeReq) returns (Response);
 
   // 添加预约人
   rpc CreateReserver(CreateReserverReq) returns (Response);

@@ -163,6 +163,11 @@ message SetPasswordReq{
   string newPassword = 3;
 }
 
+// 更改通知接收状态
+message SetNoticeReq {
+  string id = 1;
+}
+
 // 添加预约人
 message CreateReserverReq {
   string userId = 1;
