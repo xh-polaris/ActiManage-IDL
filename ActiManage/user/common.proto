@@ -253,6 +253,41 @@ message CancelFavoriteReq {
   string id = 1;
 }
 
+// 增加访问
+message CreateViewReq {
+  string targetId = 1;
+  int64 type = 2;
+}
+
+// 增加访问
+message IncViewReq {
+  string targetId = 1;
+  int64 type = 2;
+}
+
+message IncViewResp {
+
+}
+
+// 获取活动访问与收藏统计
+message GetFavoriteAndViewOfActivityReq{
+  string activityId = 1;
+}
+
+message GetFavoriteAndViewOfActivityResp {
+  int64 favorite = 1;
+  int64 view = 2;
+}
+
+// 获取商家访问
+message GetViewOfMerchantReq {
+  string merchantId = 1;
+}
+
+message GetViewOfMerchantResp {
+  int64 view = 1;
+}
+
 // 统一响应
 message Response {
   int64 code = 1;

@@ -47,4 +47,12 @@ service UserService {
   rpc DoFavorite(DoFavoriteReq) returns (Response);
   // 取消收藏
   rpc CancelFavorite(CancelFavoriteReq) returns (Response);
+  // 创建访问
+  rpc CreateView(CreateViewReq) returns (Response);
+  // 增加访问
+  rpc IncView(IncViewReq) returns (IncViewReq);
+  // 获取活动收藏与访问统计
+  rpc GetFavoriteAndViewOfActivity(GetFavoriteAndViewOfActivityReq) returns (GetFavoriteAndViewOfActivityResp);
+  // 获取商家访问
+  rpc GetViewOfMerchant(GetViewOfMerchantReq) returns (GetViewOfMerchantResp);
 }
