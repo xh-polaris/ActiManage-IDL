@@ -96,7 +96,7 @@ message UserSignUpReq{
   string merchantId = 1;        // 商家id，确定注册的是哪个商户的账号
   optional string name = 2;     // 用户名，空则用authId替代
   string authId = 3;            // 手机号或者邮箱
-  int64 authType = 4;           // 标识注册的类型, 0手机, 1邮箱
+  string authType = 4;           // 标识注册的类型, 0手机, 1邮箱
   string verifyCode = 5;        // 验证码
   string password = 6;          // 密码
   int64 gender = 7;             // 默认0未设置, 1男2女
@@ -111,7 +111,7 @@ message UserSignUpResp {
 // 登录
 message UserLoginReq {
   string authId = 1;               // 登录标识
-  int64 authType = 2;              // 标识登录的类型, 0手机, 1邮箱
+  string authType = 2;              // 标识登录的类型, 0手机, 1邮箱
   optional string verifyCode = 3;  // 验证码
   optional string password = 4;    // 用户的登录密码
 }
