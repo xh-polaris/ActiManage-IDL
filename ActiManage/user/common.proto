@@ -114,6 +114,7 @@ message UserLoginReq {
   string authType = 2;              // 标识登录的类型, 0手机, 1邮箱
   optional string verifyCode = 3;  // 验证码
   optional string password = 4;    // 用户的登录密码
+  string merchantId = 5;           // 商户ID
 }
 
 message UserLoginResp {
