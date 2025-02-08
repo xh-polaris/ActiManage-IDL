@@ -151,7 +151,7 @@ message UpdateUserInfoReq {
   string id = 1;
   string name = 2;
   int64 gender = 3;
-  int64 birth = 4;
+  optional int64 birth = 4;
   string description = 5;
   string avatar = 6;
 }
