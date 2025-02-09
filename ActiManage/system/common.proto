@@ -136,12 +136,13 @@ message MerchantSetPasswordReq{
 
 // 更新商户信息
 message UpdateMerchantInfoReq {
-  string name = 1;
-  string logo = 2;
-  repeated Opening openings = 3;
-  Location location = 4;
-  string description = 5;
-  repeated string licences = 6;
+  string id = 1;
+  string name = 2;
+  string logo = 3;
+  repeated Opening openings = 4;
+  Location location = 5;
+  string description = 6;
+  repeated string licences = 7;
 }
 
 // 更新页面设置
