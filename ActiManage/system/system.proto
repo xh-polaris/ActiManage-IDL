@@ -11,12 +11,12 @@ service SystemService {
   rpc MerchantLogin(MerchantLoginReq) returns (MerchantLoginResp);
   // 商户修改密码
   rpc MerchantSetPassword(MerchantSetPasswordReq) returns (Response);
-  // 修改页眉设置
-  rpc UpdateHeader(UpdateHeaderReq) returns (Response);
-  // 修改封面
-  rpc UpdateCover(UpdateCoverReq) returns (Response);
-  // 修改页脚
-  rpc UpdateFooter(UpdateFooterReq) returns (Response);
+  // 修改页面设置
+  rpc UpdateMerchantSetting(UpdateSettingReq) returns (Response);
+  // 获取页面配置
+  rpc GetMerchantSetting(GetMerchantSettingReq) returns (GetMerchantSettingResp);
+  // 更新商家信息
+  rpc UpdateMerchantInfo (UpdateMerchantInfoReq) returns (Response);
   // 创建活动
   rpc CreateActivity(CreateActivityReq) returns (Response);
   // 改变活动置顶状态
@@ -36,8 +36,15 @@ service SystemService {
   rpc AdminSetPassword(AdminSetPasswordReq) returns (Response);
   // 创建商家账号
   rpc CreateMerchant(CreateMerchantReq) returns (Response);
-  // 更新商家信息
+  // 管理员更新商家信息
   rpc UpdateMerchant(UpdateMerchantReq) returns (Response);
   // 删除商家
   rpc DeleteMerchant(DeleteMerchantReq) returns (Response);
+  // 获取商家信息
+  rpc GetMerchantInfo(GetMerchantInfoReq) returns (GetMerchantInfoResp);
+  // 获取商家列表
+  rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp);
+
+  // 发送验证码
+  rpc StsSendVerifyCode (StsSendVerifyCodeReq) returns (Response);
 }

@@ -232,9 +232,23 @@ message GetBookRecordResp {
 message ListBookRecordsByUserReq {
   string userId = 1;
   basic.Paging paging = 2;
+  int64 Type = 3;
 }
 
 message ListBookRecordsByUserResp {
+  int64 code = 1;                   // 状态码：0成功，非0失败
+  string msg = 2;                   // 状态信息
+  repeated BookRecord records = 3;  // 预约记录列表
+  int64 total = 4;                  // 总记录数
+}
+
+// 获取活动的预约列表
+message ListBookRecordsByActivityReq {
+  string activityId = 1;
+  basic.Paging paging = 2;
+}
+
+message ListBookRecordsByActivityResp {
   int64 code = 1;                   // 状态码：0成功，非0失败
   string msg = 2;                   // 状态信息
   repeated BookRecord records = 3;  // 预约记录列表
@@ -279,7 +293,8 @@ message DoFavoriteReq {
 
 // 取消收藏
 message CancelFavoriteReq {
-  string id = 1;
+  string userId = 1;
+  string activityId = 2;     // 活动ID
 }
 
 // 增加访问

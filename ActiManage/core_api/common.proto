@@ -31,7 +31,7 @@ message ActivitySetting {
 
 // 设置-页眉
 message Header {
-  repeated int64 rgb= 1;
+  repeated int64 rgb = 1;
 }
 
 // 设置-页脚
@@ -54,8 +54,8 @@ message Location {
 
 // 营业时间
 message Opening {
-  int64 startDat = 1;     // 开始周几
-  int64 endDat = 2;       // 结束周几
+  int64 startDay = 1;     // 开始周几
+  int64 endDay = 2;       // 结束周几
   int64 startTime = 3;    // 开始营业时间
   int64 endTime = 4;      // 结束营业时间
 }
@@ -90,9 +90,9 @@ message LoginResp {
 // 注册
 message SignUpReq {
   string name = 1;
-  string phone = 2;
-  string verifyCode = 3;
-  string email = 4;
+  string authId = 2;
+  string authType = 3;
+  string verifyCode = 4;
   string password = 5;
   string merchantId = 6;
 }
@@ -132,7 +132,7 @@ message ListActivitiesResp {
     int64 book = 4;            // 是否可预约, 0不可预约, 1可预约
     int64 bookStart = 5;       // 可预约的开始时间
     int64 bookEnd = 6;         // 可预约的结束时间
-    repeated ActivitySetting setting = 7; // 活动设置
+    ActivitySetting setting = 7; // 活动设置
     Location location = 8;     // 地点
     int64 top = 9;            // 是否置顶, 0否, 1置顶
     int64 createTime = 10;    // 创建时间
@@ -162,7 +162,7 @@ message GetActivityResp {
   int64 book = 7;          // 是否可预约, 0不可预约, 1可预约
   int64 bookStart = 8;    // 可预约的开始时间
   int64 bookEnd = 9;      // 可预约的结束时间
-  repeated ActivitySetting setting = 10; // 活动设置
+  ActivitySetting setting = 10; // 活动设置
   Location location = 11;   // 地点
   int64 top = 12;          // 是否置顶, 0否, 1置顶
   string phone = 13;       // 电话
@@ -264,12 +264,12 @@ message UpdateNoticeReq {
 }
 
 // 预约记录
-message ListBookRecordsReq {
+message ListActivitiesByBookRecordsReq {
   basic.Paging paging = 1;
   int64 type = 2;         // 类型，0全部，1进行中，2已完成，3已过期
 }
 
-message ListBookRecordsResp {
+message ListActivitiesByBookRecordsResp {
   message Item {
     string id = 1;             // mongo中的十六进制uid
     string name = 2;           // 活动名称
@@ -277,7 +277,7 @@ message ListBookRecordsResp {
     int64 book = 4;            // 是否可预约, 0不可预约, 1可预约
     int64 bookStart = 5;       // 可预约的开始时间
     int64 bookEnd = 6;         // 可预约的结束时间
-    repeated ActivitySetting setting = 7; // 活动设置
+    ActivitySetting setting = 7; // 活动设置
     Location location = 8;     // 地点
     int64 top = 9;            // 是否置顶, 0否, 1置顶
     int64 createTime = 10;    // 创建时间
@@ -332,6 +332,7 @@ message MerchantCreateActivityReq {
   optional string notice = 7;
   activitySetting activitySettings = 8;
   int64 type = 9;
+  repeated string cover = 10;
 }
 
 // 删除活动
@@ -346,7 +347,7 @@ message MerchantTopActivityReq {
 
 // 商户登录
 message MerchantLoginReq {
-  string auth = 1;
+  string authId = 1;
   string password = 2;
 }
 
@@ -496,16 +497,20 @@ message SystemCreateMerchantReq {
   Location location = 6;
   repeated Opening openings = 7;
   repeated string licences = 8;
+  string logo = 9;
 }
 
 // 修改商户信息
 message SystemUpdateMerchantReq {
+  string merchantId = 2;
   string name = 3;
   string description = 4;
   string phone = 5;
   Location location = 6;
   repeated Opening openings = 7;
   repeated string licences = 8;
+  string logo = 9;
+  int64 status = 10;
 }
 
 // TODO 获取某个商家数据看板
@@ -550,4 +555,11 @@ message StsAIModifyResp {
   int64 code = 1;
   string msg = 2;
   string text = 3;
+}
+
+//验证码
+message StsSendVerifyCodeReq {
+  string authId = 1;
+  string authType = 2;
+  string purpose = 3;
 }

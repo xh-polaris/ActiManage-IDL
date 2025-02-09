@@ -2,12 +2,12 @@ syntax = "proto3";
 
 package core_api;
 
-option go_package = "userr";
+option go_package = "core_api";
 
 import "ActiManage/core_api/common.proto";
 import "basic/http.proto";
 
-service CoreApiService {
+service user {
   /*
    * 用户部分
    */
@@ -58,7 +58,7 @@ service CoreApiService {
   }
 
   // 根据预约记录获取活动
-  rpc ListActivitiesByBookRecords (ListBookRecordsReq) returns (ListBookRecordsResp) {
+  rpc ListActivitiesByBookRecords (ListActivitiesByBookRecordsReq) returns (ListActivitiesByBookRecordsResp) {
     option (basic.post) = "/user/book/list/activity";
   }
 
@@ -91,7 +91,9 @@ service CoreApiService {
   rpc UpdateNotice (UpdateNoticeReq) returns (Response) {
     option (basic.post) = "/user/info/notice";
   }
+}
 
+service merchant {
   /*
    * 商家部分
    */
@@ -150,7 +152,9 @@ service CoreApiService {
   rpc MerchantSetPassword (MerchantSetPasswordReq) returns (Response) {
     option(basic.post) = "/merchant/password/set";
   }
+}
 
+service system {
   /*
    * 系统部分
    */
@@ -189,7 +193,9 @@ service CoreApiService {
   rpc SystemGetOverallDashboard (SystemGetOverallDashboardReq) returns (SystemGetOverallDashboardResp) {
     option(basic.get) = "/system/dashboard/overall";
   }
+}
 
+service sts {
   // 获取加签url
   rpc StsApplySignedUrl (StsApplySignedUrlReq) returns (StsApplySignedUrlResp) {
     option(basic.post) = "/sts/cos/apply";
@@ -200,5 +206,8 @@ service CoreApiService {
     option(basic.post) = "/sts/ai/modify";
   }
 
-
+  // 验证码
+  rpc StsSendVerifyCode (StsSendVerifyCodeReq) returns (Response) {
+    option(basic.post) = "/sts/verify/send";
+  }
 }

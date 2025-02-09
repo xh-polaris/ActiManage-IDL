@@ -37,6 +37,8 @@ service UserService {
   rpc GetBookRecordDetail(GetBookRecordReq) returns (GetBookRecordResp);
   // 获取用户的预约列表
   rpc ListBookRecordsByUser(ListBookRecordsByUserReq) returns (ListBookRecordsByUserResp);
+  // 获取活动的预约列表
+  rpc ListBookRecordsByActivity(ListBookRecordsByActivityReq) returns (ListBookRecordsByActivityResp);
 
   // 创建回执
   rpc CreateReceipt(CreateReceiptReq) returns (Response);
