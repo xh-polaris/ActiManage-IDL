@@ -134,7 +134,7 @@ service merchant {
   }
 
   // 获取预约管理页
-  rpc MerchantGetBookRecords (MerchantListBookRecordsReq) returns (MerchantListBookRecordsResp) {
+  rpc MerchantListBookRecords (MerchantListBookRecordsReq) returns (MerchantListBookRecordsResp) {
     option(basic.post) = "/merchant/book/list";
   }
 

@@ -48,7 +48,7 @@ message Header {
 }
 
 // 封面图设置
-message Covers {
+message Cover {
   int64 type = 1;           // 类型
   repeated string imgs = 2; // 图片列表
 }
@@ -63,7 +63,7 @@ message Setting {
   string id = 1;           // uid
   string merchantId = 2;  // uid
   Header header = 3;       // 页眉设置
-  Covers covers = 4;       // 轮播图设置
+  Cover covers = 4;       // 轮播图设置
   Footer footer = 5;       // 页脚设置
   int64 createTime = 6;   // 创建时间
   int64 updateTime = 7;   // 更新时间
@@ -148,7 +148,7 @@ message UpdateMerchantInfoReq {
 message UpdateSettingReq {
   string id = 1;
   Header header = 2;
-  Covers covers = 3;
+  Cover covers = 3;
   Footer footer = 4;
 }
 
