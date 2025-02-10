@@ -209,6 +209,7 @@ message CreateBookRecordReq {
   repeated string reserverIds = 3;  // 预约人ID
   int64 arrival = 4;                // 到达时间
   string remark = 5;                // 备注, 默认无
+  string merchantId = 6;
 }
 
 // 取消预约

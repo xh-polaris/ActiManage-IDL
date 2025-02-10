@@ -47,7 +47,7 @@ service user {
     option (basic.post) = "/user/favorite/cancel";
   }
 
-  // 创建预约 
+  // TODO 冗余MerchantID 创建预约
   rpc CreateBooking (CreateBookingReq) returns (Response) {
     option (basic.post) = "/user/book/create";
   }

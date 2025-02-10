@@ -191,6 +191,7 @@ message CreateBookingReq {
   repeated string reserverIds = 2;  // 预约人ID
   int64 arrival = 3;                // 到达时间
   string remark = 4;                // 备注, 默认无
+  string merchantId = 5;            // 商家ID
 }
 
 // 取消预约
