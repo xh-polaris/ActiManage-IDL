@@ -362,6 +362,7 @@ message ListMerchantIdsByBookRecordRankResp {
 // 根据预约排名获取活动列表
 message ListActivityIdsByBookRecordRankReq {
   int64 number = 1;
+  string merchantId = 2;
 }
 
 message ListActivityIdsByBookRecordRankResp {

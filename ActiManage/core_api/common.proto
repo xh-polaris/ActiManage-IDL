@@ -523,24 +523,51 @@ message SystemUpdateMerchantReq {
   int64 status = 10;
 }
 
-// TODO 获取某个商家数据看板
+
+//获取某个商家数据看板
 message SystemGetDashboardReq {
   string id = 1;
   int64 viewDataNumber = 2;  // 折线图数据数
+  int64 activityByBookNumber = 3; // 根据预约量的活动排名数
 }
 
 message SystemGetDashboardResp {
-
+  message ViewItem {
+    int64 number = 1;
+    int64 time = 2;
+  }
+  message ActivityItem {
+    string id = 1;
+    string name = 2;
+    int64 number = 3;
+  }
+  repeated ViewItem viewData = 1;
+  repeated ActivityItem activityByBookNumber = 2;
 }
 
-// TODO 获取总数据看板
+// 获取总数据看板
 message SystemGetOverallDashboardReq {
   int64 lineNumber = 1;
-  int64 merchantByBookRecordRank = 2;
+  int64 merchantByViewRankNumber = 2;
+  int64 merchantByBookRecordRankNumber = 3;
+  int64 merchantByActivityNumberRankNumber = 4;
 }
 
 message SystemGetOverallDashboardResp {
-
+  message LineItem {
+    int64 number = 1;
+    int64 time = 2;
+  }
+  message MerchantItem {
+    string id = 1;
+    string name = 2;
+    string logo = 3;
+    int64 number = 4;
+  }
+  repeated LineItem lineData = 1;
+  repeated MerchantItem merchantByViewRank = 2;
+  repeated MerchantItem merchantByBookRecordRank = 3;
+  repeated MerchantItem merchantByActivityNumberRank = 4;
 }
 
 // 获取加签url
