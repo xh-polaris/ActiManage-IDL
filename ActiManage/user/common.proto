@@ -375,6 +375,7 @@ message ListActivityIdsByBookRecordRankResp {
 // 获取单个商家的访问量折线图
 message GetViewDataByMerchantReq {
   int64 number = 1;
+  string merchantId = 2;
 }
 
 message GetViewDataByMerchantResp {
