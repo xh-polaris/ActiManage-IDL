@@ -55,10 +55,17 @@ service UserService {
   rpc CancelFavorite(CancelFavoriteReq) returns (Response);
   // 创建访问
   rpc CreateView(CreateViewReq) returns (Response);
-  // 增加访问
-  rpc IncView(IncViewReq) returns (IncViewResp);
   // 获取活动收藏与访问统计
   rpc GetFavoriteAndViewOfActivity(GetFavoriteAndViewOfActivityReq) returns (GetFavoriteAndViewOfActivityResp);
   // 获取商家访问
   rpc GetViewOfMerchant(GetViewOfMerchantReq) returns (GetViewOfMerchantResp);
+
+  // TODO 获取根据访问量获取商家排名
+  rpc ListMerchantIdByViewRank(ListMerchantIdsByViewRankReq) returns (ListMerchantIdsByViewRankResp);
+  // TODO 根据预约量获取商家排名
+  rpc ListMerchantIdRankRankByBookRecordRank(ListMerchantIdsByBookRecordRankReq) returns (ListMerchantIdsByBookRecordRankResp);
+  // TODO 根据预约量获取活动排名
+  rpc ListActivityIdRankRankByBookRecordRank(ListActivityIdsByBookRecordRankReq) returns (ListActivityIdsByBookRecordRankResp);
+  // TODO 获取单个商家的客户访问量折线图
+  rpc GetViewDataByMerchant (GetViewDataByMerchantReq) returns (GetViewDataByMerchantResp);
 }

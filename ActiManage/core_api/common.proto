@@ -374,9 +374,10 @@ message MerchantGetSettingResp {
 
 // 修改页面设置
 message MerchantUpdateSettingReq {
-  Header header = 1;
-  Footer footer = 2;
-  Cover cover = 3;
+  string id = 1;
+  Header header = 2;
+  Footer footer = 3;
+  Cover cover = 4;
 }
 
 // 获取预约管理页
@@ -427,9 +428,17 @@ message MerchantGetInfoReq {
 message MerchantGetInfoResp {
   int64 code = 1;
   string msg = 2;
-  string auth = 3;
-  string logo = 4;
-  string name = 5;
+  string name = 3;         // 名称
+  string logo = 4;         // 商家logo
+  repeated Opening openings = 5; // 营业时间
+  string phone = 6;      // 联系方式
+  Location location = 7;   // 地点
+  string description = 8;  // 描述
+  repeated string licences = 9; // 证件照片
+  int64 createTime = 10;   // 创建时间
+  int64 updateTime = 11;  // 更新时间
+  int64 deleteTime = 12;  // 删除时间
+  int64 status = 13;       // 状态, 0正常, -1删除
 }
 
 // 设置密码
@@ -562,4 +571,10 @@ message StsSendVerifyCodeReq {
   string authId = 1;
   string authType = 2;
   string purpose = 3;
+}
+
+// 访问记录
+message StsViewReq {
+  string targetId = 1;
+  int64 type = 2;  // 0商家,1活动
 }

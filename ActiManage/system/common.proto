@@ -303,6 +303,60 @@ message DeleteMerchantReq {
   string merchantId = 2;
 }
 
+// 获取商家总数折线图
+message GetMerchantTotalDataReq {
+  int64 number = 1;
+}
+
+message GetMerchantTotalDataResp {
+  message Item {
+    int64 number = 1;
+    int64 time = 2;
+  }
+  repeated Item items = 1;
+}
+
+//  根据id列表获取商家列表
+message ListMerchantsByMerchantIdReq {
+  repeated string ids = 1;
+}
+
+message ListMerchantsByMerchantIdResp {
+  message Item {
+    string id = 1;
+    string name = 2;
+    string logo = 3;
+  }
+  repeated Item items = 1;
+}
+
+// 根据活动量对商家排名
+message ListMerchantsByActivityNumberReq {
+  int64 number = 1;
+}
+
+message ListMerchantsByActivityNumberResp {
+  message Item {
+    string id = 1;
+    string name = 2;
+    string logo = 3;
+    int64 number = 4;
+  }
+}
+
+// 根据活动id获取活动列表
+message ListActivitiesByActivityIdReq {
+  repeated string ids = 1;
+}
+
+message ListActivitiesByActivityIdResp {
+  message Item {
+    string id = 1;
+    string name = 2;
+  }
+  repeated Item items = 1;
+}
+
 //验证码
 message StsSendVerifyCodeReq {
   string authId = 1;

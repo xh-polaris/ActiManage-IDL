@@ -193,6 +193,7 @@ service system {
   rpc SystemGetOverallDashboard (SystemGetOverallDashboardReq) returns (SystemGetOverallDashboardResp) {
     option(basic.get) = "/system/dashboard/overall";
   }
+
 }
 
 service sts {
@@ -209,5 +210,10 @@ service sts {
   // 验证码
   rpc StsSendVerifyCode (StsSendVerifyCodeReq) returns (Response) {
     option(basic.post) = "/sts/verify/send";
+  }
+
+  // TODO 访问一个活动或商家
+  rpc StsView (StsViewReq) returns (Response) {
+    option(basic.post) = "/sts/view";
   }
 }

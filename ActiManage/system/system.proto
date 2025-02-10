@@ -45,6 +45,16 @@ service SystemService {
   // 获取商家列表
   rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp);
 
-  // 发送验证码
+  // TODO 获取商家总数折线图
+  rpc GetMerchantTotalData (GetMerchantTotalDataReq) returns (GetMerchantTotalDataResp);
+  // TODO 根据商家ID列表获取列表 (用于访问量和预约量排名)
+  rpc ListMerchantByMerchantId (ListMerchantsByMerchantIdReq) returns (ListMerchantsByMerchantIdResp);
+  // TODO 根据商家活动量对商家排名
+  rpc ListMerchantByActivityNumber (ListMerchantsByActivityNumberReq) returns (ListMerchantsByActivityNumberResp);
+  // TODO 根据活动预约量对活动排名
+  rpc ListActivityByActivityId (ListActivitiesByActivityIdReq) returns (ListActivitiesByActivityIdResp);
+
+
+  // TODO 发送验证码
   rpc StsSendVerifyCode (StsSendVerifyCodeReq) returns (Response);
 }

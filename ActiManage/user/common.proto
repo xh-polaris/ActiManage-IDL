@@ -332,6 +332,48 @@ message GetViewOfMerchantResp {
   int64 view = 1;
 }
 
+// 根据访问排名获取商家列表
+message ListMerchantIdsByViewRankReq {
+  int64 number = 1;
+}
+
+message ListMerchantIdsByViewRankResp {
+  repeated string ids = 1;
+}
+
+// 根据预约排名获取商家列表
+message ListMerchantIdsByBookRecordRankReq {
+  int64 number = 1;
+}
+
+message ListMerchantIdsByBookRecordRankResp {
+  repeated string ids = 1;
+}
+
+// 根据预约排名获取活动列表
+message ListActivityIdsByBookRecordRankReq {
+  int64 number = 1;
+}
+
+message ListActivityIdsByBookRecordRankResp {
+  repeated string ids = 1;
+}
+
+// 获取单个商家的访问量折线图
+message GetViewDataByMerchantReq {
+  int64 number = 1;
+}
+
+message GetViewDataByMerchantResp {
+  message Item {
+    int64 number = 1;
+    int64 time = 2;
+  }
+  repeated Item items = 1;
+}
+
+
+
 // 统一响应
 message Response {
   int64 code = 1;
