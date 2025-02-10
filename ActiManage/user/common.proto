@@ -338,7 +338,11 @@ message ListMerchantIdsByViewRankReq {
 }
 
 message ListMerchantIdsByViewRankResp {
-  repeated string ids = 1;
+  message Item {
+    string id = 1;
+    int64 number = 2;
+  }
+  repeated Item items = 1;
 }
 
 // 根据预约排名获取商家列表
@@ -347,7 +351,11 @@ message ListMerchantIdsByBookRecordRankReq {
 }
 
 message ListMerchantIdsByBookRecordRankResp {
-  repeated string ids = 1;
+  message Item {
+    string id = 1;
+    int64 number = 2;
+  }
+  repeated Item items = 1;
 }
 
 // 根据预约排名获取活动列表
@@ -356,7 +364,11 @@ message ListActivityIdsByBookRecordRankReq {
 }
 
 message ListActivityIdsByBookRecordRankResp {
-  repeated string ids = 1;
+  message Item {
+    string id = 1;
+    int64 number = 2;
+  }
+  repeated Item items = 1;
 }
 
 // 获取单个商家的访问量折线图
