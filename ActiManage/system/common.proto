@@ -342,6 +342,7 @@ message ListMerchantsByActivityNumberResp {
     string logo = 3;
     int64 number = 4;
   }
+  repeated Item items = 1;
 }
 
 // 根据活动id获取活动列表
