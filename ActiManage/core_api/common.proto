@@ -526,6 +526,7 @@ message SystemUpdateMerchantReq {
 // TODO 获取某个商家数据看板
 message SystemGetDashboardReq {
   string id = 1;
+  int64 viewDataNumber = 2;  // 折线图数据数
 }
 
 message SystemGetDashboardResp {
@@ -534,7 +535,8 @@ message SystemGetDashboardResp {
 
 // TODO 获取总数据看板
 message SystemGetOverallDashboardReq {
-
+  int64 lineNumber = 1;
+  int64 merchantByBookRecordRank = 2;
 }
 
 message SystemGetOverallDashboardResp {
