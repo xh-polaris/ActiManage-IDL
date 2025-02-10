@@ -47,7 +47,7 @@ service user {
     option (basic.post) = "/user/favorite/cancel";
   }
 
-  // TODO 冗余MerchantID 创建预约
+  // 创建预约
   rpc CreateBooking (CreateBookingReq) returns (Response) {
     option (basic.post) = "/user/book/create";
   }
@@ -212,7 +212,7 @@ service sts {
     option(basic.post) = "/sts/verify/send";
   }
 
-  // TODO 访问一个活动或商家
+  // 访问一个活动或商家
   rpc StsView (StsViewReq) returns (Response) {
     option(basic.post) = "/sts/view";
   }
