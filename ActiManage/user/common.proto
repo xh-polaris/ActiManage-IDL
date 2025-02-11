@@ -18,7 +18,7 @@ message User {
   string email = 5 ;      // string, 邮件
   string password = 6;    // string, 数据库中的密码需要存加密后(Bcrypt)
   int64 gender = 7 ;      // int, 默认0未设置, 1男2女
-  int64 birth = 8;        // time, 生日
+  optional int64 birth = 8;        // time, 生日
   int64 createTime = 9;   // time, 创建时间
   int64 updateTime = 10;  // time, 更新时间
   int64 deleteTime = 11;  // time, 删除时间
@@ -37,7 +37,7 @@ message Reserver {
   string relation = 5;    // 与号主关系
   string phone = 6;
   string email = 7;
-  int64 birth = 8;        // time, 生日
+  optional int64 birth = 8;        // time, 生日
   int64 createTime = 9;   // time, 创建时间
   int64 updateTime = 10;  // time, 更新时间
   int64 deleteTime = 11;  // time, 删除时间
@@ -137,7 +137,7 @@ message GetUserInfoResp {
   string phone = 6 ;      // string, 电话
   string email = 7 ;      // string, 邮件
   int64 gender = 8 ;      // int, 默认0未设置, 1男2女
-  int64 birth = 9;        // time, 生日
+  optional int64 birth = 9;        // time, 生日
   int64 createTime = 10;   // time, 创建时间
   int64 updateTime = 11;  // time, 更新时间
   int64 status = 12;      // int, 状态, 0正常, -1删除
