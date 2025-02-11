@@ -191,7 +191,7 @@ service system {
 
   // 获取总数据看板
   rpc SystemGetOverallDashboard (SystemGetOverallDashboardReq) returns (SystemGetOverallDashboardResp) {
-    option(basic.get) = "/system/dashboard/overall";
+    option(basic.post) = "/system/dashboard/overall";
   }
 
 }

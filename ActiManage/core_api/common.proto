@@ -318,7 +318,7 @@ message MerchantListActivitiesResp {
 // 新建活动
 message MerchantCreateActivityReq {
 
-  message activitySetting {
+  message ActivitySetting {
     int64 max = 1;
     int64 start = 2;
     int64 end = 3;
@@ -331,9 +331,10 @@ message MerchantCreateActivityReq {
   Location location = 5;
   string description = 6;
   optional string notice = 7;
-  activitySetting activitySettings = 8;
+  repeated ActivitySetting activitySettings = 8;
   int64 type = 9;
   repeated string cover = 10;
+  int64 top = 11;
 }
 
 // 删除活动
@@ -542,8 +543,10 @@ message SystemGetDashboardResp {
     string name = 2;
     int64 number = 3;
   }
-  repeated ViewItem viewData = 1;
-  repeated ActivityItem activityByBookNumber = 2;
+  int64 code = 1;
+  string msg = 2;
+  repeated ViewItem viewData = 3;
+  repeated ActivityItem activityByBookNumber = 4;
 }
 
 // 获取总数据看板
@@ -565,10 +568,12 @@ message SystemGetOverallDashboardResp {
     string logo = 3;
     int64 number = 4;
   }
-  repeated LineItem lineData = 1;
-  repeated MerchantItem merchantByViewRank = 2;
-  repeated MerchantItem merchantByBookRecordRank = 3;
-  repeated MerchantItem merchantByActivityNumberRank = 4;
+  int64 code = 1;
+  string msg = 2;
+  repeated LineItem lineData = 3;
+  repeated MerchantItem merchantByViewRank = 4;
+  repeated MerchantItem merchantByBookRecordRank = 5;
+  repeated MerchantItem merchantByActivityNumberRank = 6;
 }
 
 // 获取加签url
