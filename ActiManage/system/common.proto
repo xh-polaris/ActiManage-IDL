@@ -200,6 +200,7 @@ message UpdateActivityReq {
 message ListActivitiesReq {
   basic.Paging paging = 1;
   int64 type = 2;
+  string merchantId = 3;
 }
 
 message ListActivitiesResp {

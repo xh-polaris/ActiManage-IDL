@@ -48,8 +48,8 @@ message Cover {
 // 定位
 message Location {
   string text = 1;
-  float longitude = 2;
-  float latitude = 3;
+  double longitude = 2;
+  double latitude = 3;
 }
 
 // 营业时间
@@ -371,6 +371,7 @@ message MerchantGetSettingResp {
   Header header = 3;
   Footer footer = 4;
   Cover cover = 5;
+  string id = 6;
 }
 
 // 修改页面设置
@@ -580,8 +581,6 @@ message StsApplySignedUrlResp {
   int64 code = 1;
   string msg = 2;
   string url = 3;
-  string sessionToken = 4;
-
 }
 
 // AI润色
