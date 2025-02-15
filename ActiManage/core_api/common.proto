@@ -122,6 +122,7 @@ message GetSettingResp {
 message ListActivitiesReq {
   basic.Paging paging = 1;
   optional int64 type = 2;
+  string merchantId = 3;
 }
 
 message ListActivitiesResp {
@@ -386,6 +387,7 @@ message MerchantUpdateSettingReq {
 // 获取预约管理页
 message MerchantListBookRecordsReq {
   basic.Paging paging = 1;
+  string activityId = 2;
 }
 
 message MerchantListBookRecordsResp {
@@ -402,15 +404,10 @@ message MerchantListBookRecordsResp {
     int64 arrival = 10;
     string remark = 11;
   }
-  message BookRecords {
-    string activityName = 1;
-    repeated BookRecord bookRecords = 2;
-    int64 total = 3;
-  }
 
   int64 code = 1;
   string msg = 2;
-  repeated BookRecords bookRecords = 3;
+  repeated BookRecord bookRecords = 3;
   int64 total = 4;
 }
 
