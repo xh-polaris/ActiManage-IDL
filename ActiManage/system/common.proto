@@ -110,6 +110,11 @@ message Admin {
   int64 status = 7;        // 状态, 0正常, -1删除
 }
 
+// 广告
+message Ad {
+  repeated string imgs = 1;
+}
+
 /*
  * 消息定义
  */
@@ -162,6 +167,35 @@ message GetMerchantSettingResp {
   int64 code = 1;
   string msg = 2;
   Setting setting = 3;
+}
+
+// 根据uri获取商户信息
+message GetMerchantInfoByUriReq {
+  string uri = 1;
+}
+
+message GetMerchantInfoByUriResp {
+  int64 code = 1;
+  string msg = 2;
+  string merchantId = 3;
+  Ad ad = 4;
+}
+
+// 获取广告
+message GetAdReq {
+  string merchantId = 1;
+}
+
+message GetAdResp {
+  int64 code = 1;
+  string msg = 2;
+  Ad ad = 3;
+}
+
+// 设置广告
+message SetAdReq {
+  string merchantId = 1;
+  Ad ad = 2;
 }
 
 // 创建活动
@@ -251,6 +285,7 @@ message CreateMerchantReq {
   string description = 6;  // 描述
   repeated string licences = 7; // 证件照片
   string logo = 8;
+  string uri = 9;
 }
 
 // 更新商家信息

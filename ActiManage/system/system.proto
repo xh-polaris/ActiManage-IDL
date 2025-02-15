@@ -17,6 +17,12 @@ service SystemService {
   rpc GetMerchantSetting(GetMerchantSettingReq) returns (GetMerchantSettingResp);
   // 更新商家信息
   rpc UpdateMerchantInfo (UpdateMerchantInfoReq) returns (Response);
+  // 根据uri获取商家信息
+  rpc GetMerchantInfoByUri (GetMerchantInfoByUriReq) returns (GetMerchantInfoByUriResp);
+  // 获取广告设置
+  rpc GetAd (GetAdReq) returns (GetAdResp);
+  // 设置广告
+  rpc SetAd (SetAdReq) returns (Response);
   // 创建活动
   rpc CreateActivity(CreateActivityReq) returns (Response);
   // 改变活动置顶状态
