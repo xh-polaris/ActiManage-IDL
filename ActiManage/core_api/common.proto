@@ -60,6 +60,11 @@ message Opening {
   int64 endTime = 4;      // 结束营业时间
 }
 
+// 广告
+message Ad {
+  repeated string imgs = 1;
+}
+
 // 通用响应
 message Response {
   int64 code = 1;
@@ -447,6 +452,36 @@ message MerchantSetPasswordReq {
   string oldPassword = 2;
 }
 
+// 根据uri获取商户信息
+message GetMerchantInfoByUriReq {
+  string uri = 1;
+}
+
+message GetMerchantInfoByUriResp {
+  int64 code = 1;
+  string msg = 2;
+  string merchantId = 3;
+  Ad ad = 4;
+}
+
+// 获取广告
+message GetAdReq {
+  string merchantId = 1;
+}
+
+message GetAdResp {
+  int64 code = 1;
+  string msg = 2;
+  Ad ad = 3;
+}
+
+// 设置广告
+message SetAdReq {
+  string merchantId = 1;
+  Ad ad = 2;
+}
+
+
 /*
  * 系统部分
  */
@@ -507,6 +542,7 @@ message SystemCreateMerchantReq {
   repeated Opening openings = 7;
   repeated string licences = 8;
   string logo = 9;
+  string uri = 10;
 }
 
 // 修改商户信息

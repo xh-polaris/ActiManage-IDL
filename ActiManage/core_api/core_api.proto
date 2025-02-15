@@ -148,10 +148,25 @@ service merchant {
     option(basic.get) = "/merchant/info/get";
   }
 
+  // 根据uri获取商家信息
+  rpc GetMerchantInfoByUri (GetMerchantInfoByUriReq) returns (GetMerchantInfoByUriResp){
+    option(basic.post) = "/merchant/info/uri";
+  }
+
+  // 获取广告设置
+  rpc GetAd (GetAdReq) returns (GetAdResp){
+    option(basic.post) = "/merchant/ad/get";
+  }
+  // 设置广告
+  rpc SetAd (SetAdReq) returns (Response){
+    option(basic.post) = "/merchant/ad/update";
+  }
+
   // 设置密码
   rpc MerchantSetPassword (MerchantSetPasswordReq) returns (Response) {
     option(basic.post) = "/merchant/password/set";
   }
+
 }
 
 service system {
