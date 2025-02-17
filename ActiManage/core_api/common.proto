@@ -179,6 +179,7 @@ message GetActivityResp {
   int64 status = 18;       // 状态, 0正常, -1删除
   int64 favorite = 19;      // 收藏数
   int64 view = 20;          // 点击数
+  int64 booked = 21;        // 0未预约，1已预约
 }
 
 // 收藏
