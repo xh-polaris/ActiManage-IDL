@@ -444,6 +444,7 @@ message MerchantGetInfoResp {
   int64 updateTime = 11;  // 更新时间
   int64 deleteTime = 12;  // 删除时间
   int64 status = 13;       // 状态, 0正常, -1删除
+  string uri = 14;
 }
 
 // 设置密码
