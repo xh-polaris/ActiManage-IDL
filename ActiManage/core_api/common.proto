@@ -413,14 +413,14 @@ message MerchantUpdateSettingReq {
   Cover cover = 4;
 }
 
-// 获取预约管理页
+// 获取单个活动的预约列表
 message MerchantListBookRecordsReq {
   basic.Paging paging = 1;
   string activityId = 2;
 }
 
 message MerchantListBookRecordsResp {
-  message BookRecord {
+  message Item {
     string id = 1;
     string activityId = 2;
     string userId = 3;
@@ -436,7 +436,7 @@ message MerchantListBookRecordsResp {
 
   int64 code = 1;
   string msg = 2;
-  repeated BookRecord bookRecords = 3;
+  repeated Item bookRecords = 3;
   int64 total = 4;
 }
 
