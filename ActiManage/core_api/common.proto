@@ -421,23 +421,27 @@ message MerchantListBookRecordsReq {
 
 message MerchantListBookRecordsResp {
   message Item {
+    string reserverId = 1;  // 预约人id
+    int64 cancel = 2;       // 0正常, 1取消
+    string name = 3;
+    string phone = 4;
+  }
+  message BookItem {
     string id = 1;
     string activityId = 2;
     string userId = 3;
-    string name = 4;
-    int64 gender = 5;
-    string phone = 6;
-    string email = 7;
-    string relation = 8;
-    int64 timestamp = 9;
-    int64 arrival = 10;
-    string remark = 11;
+    repeated Item reservers = 4;  // 预约人列表
+    int64 arrival = 5;
+    string remark = 6;
+    int64 createTime = 7;  // time, 创建时间
+    int64 updateTime = 8;  // time, 更新时间
+    int64 status = 10;     // int, 状态, 0正常, -1删除
   }
 
-  int64 code = 1;
-  string msg = 2;
-  repeated Item bookRecords = 3;
-  int64 total = 4;
+  int64 code = 1;                   // 状态码：0成功，非0失败
+  string msg = 2;                   // 状态信息
+  repeated BookItem bookRecords = 3;  // 预约记录列表
+  int64 total = 4;                  // 总记录数
 }
 
 // 更新商家信息
