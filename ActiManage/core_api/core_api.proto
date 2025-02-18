@@ -91,6 +91,11 @@ service user {
   rpc UpdateNotice (UpdateNoticeReq) returns (Response) {
     option (basic.post) = "/user/info/notice";
   }
+
+  // 获取商家信息
+  rpc GetMerchantInfo (GetMerchantInfoReq) returns (GetMerchantInfoResp) {
+    option(basic.post) = "/user/merchant/info/get";
+  }
 }
 
 service merchant {
