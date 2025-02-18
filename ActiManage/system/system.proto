@@ -61,6 +61,8 @@ service SystemService {
   rpc ListActivityByActivityId (ListActivitiesByActivityIdReq) returns (ListActivitiesByActivityIdResp);
 
 
-  // TODO 发送验证码
+  // 发送验证码
   rpc StsSendVerifyCode (StsSendVerifyCodeReq) returns (Response);
+  // 校验验证码
+  rpc StsCheckVerifyCode (StsCheckVerifyCodeReq) returns (Response);
 }

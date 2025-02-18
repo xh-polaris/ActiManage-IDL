@@ -401,6 +401,12 @@ message StsSendVerifyCodeReq {
   string purpose = 3;
 }
 
+// 校验验证码
+message StsCheckVerifyCodeReq {
+  string verifyId = 1;
+  string verifyCode = 2;
+}
+
 // 统一响应
 message Response {
   int64 code = 1;
