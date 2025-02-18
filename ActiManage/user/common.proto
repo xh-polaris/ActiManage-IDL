@@ -256,6 +256,16 @@ message ListBookRecordsByActivityResp {
   int64 total = 4;                  // 总记录数
 }
 
+// 根据用户id和活动id判断是否预约
+message CheckBookRecordByUserIdAndActivityIdReq {
+  string userId = 1;
+  string activityId = 2;
+}
+
+message CheckBookRecordByUserIdAndActivityIdResp {
+  int64 booked = 1;
+}
+
 // 创建回执
 message CreateReceiptReq {
   string userId = 1;

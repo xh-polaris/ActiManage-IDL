@@ -314,6 +314,7 @@ message GetMerchantInfoResp {
   int64 updateTime = 12;  // 更新时间
   int64 deleteTime = 13;  // 删除时间
   int64 status = 14;       // 状态, 0正常, -1删除
+  string uri = 15;
 }
 
 // 获取商家列表
