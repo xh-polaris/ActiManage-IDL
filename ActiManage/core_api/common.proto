@@ -153,6 +153,35 @@ message ListActivitiesResp {
   int64 total = 4;
 }
 
+// 根据访问记录获取活动
+// 分页获取活动
+message ListActivitiesByViewReq {
+  basic.Paging paging = 1;
+}
+
+message ListActivitiesByViewResp {
+  message Item {
+    string id = 1;             // mongo中的十六进制uid
+    string name = 2;           // 活动名称
+    repeated string cover = 3; // 封面
+    int64 book = 4;            // 是否可预约, 0不可预约, 1可预约
+    int64 bookStart = 5;       // 可预约的开始时间
+    int64 bookEnd = 6;         // 可预约的结束时间
+    ActivitySetting setting = 7; // 活动设置
+    Location location = 8;     // 地点
+    int64 top = 9;            // 是否置顶, 0否, 1置顶
+    int64 createTime = 10;    // 创建时间
+    int64 updateTime = 11;    // 更新时间
+    int64 status = 12;        // 状态, 0正常, -1删除
+    int64 favorite = 13;      // 收藏数
+    int64 view = 14;          // 点击数
+  }
+  int64 code = 1;
+  string msg = 2;
+  repeated Item activities = 3;
+  int64 total = 4;
+}
+
 // 获取活动详情
 message GetActivityReq {
   string id = 1;

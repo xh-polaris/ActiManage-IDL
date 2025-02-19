@@ -61,6 +61,8 @@ service UserService {
   rpc GetFavoriteAndViewOfActivity(GetFavoriteAndViewOfActivityReq) returns (GetFavoriteAndViewOfActivityResp);
   // 获取商家访问
   rpc GetViewOfMerchant(GetViewOfMerchantReq) returns (GetViewOfMerchantResp);
+  // 根据访问记录获取活动id
+  rpc ListActivityIdsByView(ListActivityIdsByViewReq) returns (ListActivityIdsByViewResp);
 
   // 获取根据访问量获取商家排名
   rpc ListMerchantIdByViewRank(ListMerchantIdsByViewRankReq) returns (ListMerchantIdsByViewRankResp);

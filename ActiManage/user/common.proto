@@ -330,6 +330,7 @@ message CancelFavoriteReq {
 message CreateViewReq {
   string targetId = 1;
   int64 type = 2;
+  string userId = 3;
 }
 
 // 增加访问
@@ -413,6 +414,16 @@ message GetViewDataByMerchantResp {
     int64 time = 2;
   }
   repeated Item items = 1;
+}
+
+// 获取历史访问活动
+message ListActivityIdsByViewReq {
+  string userId = 1;
+  basic.Paging paging = 2;
+}
+
+message ListActivityIdsByViewResp {
+  repeated string ids = 1;
 }
 
 

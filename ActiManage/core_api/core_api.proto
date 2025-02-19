@@ -96,6 +96,11 @@ service user {
   rpc GetMerchantInfo (GetMerchantInfoReq) returns (GetMerchantInfoResp) {
     option(basic.post) = "/user/merchant/info/get";
   }
+
+  // 根据访问获取活动
+  rpc ListActivitiesByView (ListActivitiesByViewReq) returns (ListActivitiesByViewResp) {
+    option (basic.post) = "/user/view/list/activity";
+  }
 }
 
 service merchant {
