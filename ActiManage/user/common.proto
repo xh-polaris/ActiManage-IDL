@@ -424,6 +424,7 @@ message ListActivityIdsByViewReq {
 
 message ListActivityIdsByViewResp {
   repeated string ids = 1;
+  int64 total = 2;
 }
 
 
