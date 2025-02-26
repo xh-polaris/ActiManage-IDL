@@ -211,6 +211,7 @@ message GetActivityResp {
   int64 view = 20;          // 点击数
   int64 booked = 21;        // 0未预约，1已预约
   int64 isFavorite = 22;    // 0未收藏，1已收藏
+  int64 currentBooked = 23; // 当前已预约人数
 }
 
 // 收藏

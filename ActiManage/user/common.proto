@@ -282,6 +282,7 @@ message CheckBookRecordByUserIdAndActivityIdReq {
 
 message CheckBookRecordByUserIdAndActivityIdResp {
   int64 booked = 1;
+  int64 currentBooked = 2;    // 当前预约人数
 }
 
 // 创建回执
