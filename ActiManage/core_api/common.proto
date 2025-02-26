@@ -146,6 +146,7 @@ message ListActivitiesResp {
     int64 status = 12;        // 状态, 0正常, -1删除
     int64 favorite = 13;      // 收藏数
     int64 view = 14;          // 点击数
+    int64 isFavorite = 15;    // 0未收藏，1已收藏
   }
   int64 code = 1;
   string msg = 2;
@@ -209,6 +210,7 @@ message GetActivityResp {
   int64 favorite = 19;      // 收藏数
   int64 view = 20;          // 点击数
   int64 booked = 21;        // 0未预约，1已预约
+  int64 isFavorite = 22;    // 0未收藏，1已收藏
 }
 
 // 收藏

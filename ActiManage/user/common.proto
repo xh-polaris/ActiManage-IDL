@@ -326,6 +326,12 @@ message CancelFavoriteReq {
   string activityId = 2;     // 活动ID
 }
 
+// 判断是否收藏
+message CheckFavoriteReq {
+  string userId = 1;
+  string activityId = 2;     // 活动ID
+}
+
 // 增加访问
 message CreateViewReq {
   string targetId = 1;

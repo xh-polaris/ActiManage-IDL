@@ -55,6 +55,8 @@ service UserService {
   rpc DoFavorite(DoFavoriteReq) returns (Response);
   // 取消收藏
   rpc CancelFavorite(CancelFavoriteReq) returns (Response);
+  // 判断是否收藏
+  rpc CheckFavorite(CheckFavoriteReq) returns (Response);
   // 创建访问
   rpc CreateView(CreateViewReq) returns (Response);
   // 获取活动收藏与访问统计
