@@ -272,6 +272,7 @@ message ListBookRecordsByActivityResp {
   string msg = 2;                   // 状态信息
   repeated BookItem records = 3;  // 预约记录列表
   int64 total = 4;                  // 总记录数
+  int64 currentBooked = 5;          // 当前预约总人数
 }
 
 // 根据用户id和活动id判断是否预约

@@ -474,6 +474,7 @@ message MerchantListBookRecordsResp {
   string msg = 2;                   // 状态信息
   repeated BookItem bookRecords = 3;  // 预约记录列表
   int64 total = 4;                  // 总记录数
+  int64 currentBooked = 5;          // 预约的总人数
 }
 
 // 更新商家信息
