@@ -77,6 +77,11 @@ service user {
     option (basic.post) = "/user/reserver/delete";
   }
 
+  // 更新预约人
+  rpc UpdateReserver (UpdateReserverReq) returns (Response) {
+    option(basic.post) = "/user/reserver/update";
+  }
+
   // 获取用户信息
   rpc GetUserInfo (GetUserInfoReq) returns (GetUserInfoResp) {
     option (basic.get) = "/user/info/get";
@@ -116,6 +121,11 @@ service merchant {
   // 新建活动
   rpc MerchantCreateActivity (MerchantCreateActivityReq) returns (Response) {
     option(basic.post) = "/merchant/activity/create";
+  }
+
+  // 更新活动
+  rpc MerchantUpdateActivity (MerchantUpdateActivityReq) returns (Response){
+    option(basic.post) = "/merchant/activity/update";
   }
 
   // 删除活动

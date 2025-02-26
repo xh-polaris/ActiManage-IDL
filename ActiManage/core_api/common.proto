@@ -266,6 +266,11 @@ message DeleteReserverReq {
   string id = 1;
 }
 
+// 更新预约人
+message UpdateReserverReq {
+  Reserver reserver = 1;
+}
+
 // 获取用户信息
 message GetUserInfoReq {
 }
@@ -402,6 +407,17 @@ message MerchantCreateActivityReq {
 // 删除活动
 message MerchantDeleteActivityReq {
   string id = 1;
+}
+
+// 更新活动
+message MerchantUpdateActivityReq {
+  string id = 1;
+  string name = 2;
+  Location location = 3;
+  string description = 4;
+  optional string notice = 5;
+  int64 max = 6;
+  repeated string cover = 7;
 }
 
 // 置顶活动
