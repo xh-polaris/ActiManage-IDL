@@ -133,6 +133,12 @@ service merchant {
     option(basic.post) = "/merchant/activity/delete";
   }
 
+  // 获取活动详情
+  rpc MerchantGetActivity (MerchantGetActivityReq) returns (MerchantGetActivityResp) {
+    option (basic.post) = "/merchant/activity/get";
+  }
+
+
   // 置顶活动
   rpc MerchantTopActivity (MerchantTopActivityReq) returns (Response) {
     option(basic.post) = "/merchant/activity/top";

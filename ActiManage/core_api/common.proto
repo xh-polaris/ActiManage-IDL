@@ -420,6 +420,36 @@ message MerchantUpdateActivityReq {
   repeated string cover = 7;
 }
 
+// 获取活动详情
+message MerchantGetActivityReq {
+  string id = 1;
+}
+
+message MerchantGetActivityResp {
+  int64 code = 1;
+  string msg = 2;
+  string id = 3;           // mongo中的十六进制uid
+  string merchantId = 4;  // 商户的id
+  string name = 5;          // 活动名称
+  repeated string cover = 6; // 封面
+  int64 book = 7;          // 是否可预约, 0不可预约, 1可预约
+  int64 bookStart = 8;    // 可预约的开始时间
+  int64 bookEnd = 9;      // 可预约的结束时间
+  ActivitySetting setting = 10; // 活动设置
+  Location location = 11;   // 地点
+  int64 top = 12;          // 是否置顶, 0否, 1置顶
+  string phone = 13;       // 电话
+  string description = 14; // 活动详情
+  string notice = 15;      // 预约须知
+  int64 createTime = 16;  // 创建时间
+  int64 updateTime = 17;  // 更新时间
+  int64 status = 18;       // 状态, 0正常, -1删除
+  int64 favorite = 19;      // 收藏数
+  int64 view = 20;          // 点击数
+  int64 currentBooked = 23; // 当前已预约人数
+}
+
+
 // 置顶活动
 message MerchantTopActivityReq {
   string id = 1;
