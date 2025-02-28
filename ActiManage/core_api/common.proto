@@ -751,5 +751,5 @@ message StsSendVerifyCodeReq {
 // 访问记录
 message StsViewReq {
   string targetId = 1;
-  int64 type = 2;  // 0商家,1活动
+  int64 targetType = 2;  // 0商家,1活动
 }
