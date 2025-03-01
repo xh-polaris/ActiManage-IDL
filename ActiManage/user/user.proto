@@ -21,6 +21,17 @@ service UserService {
   // 更改通知信息接收状态
   rpc SetNotice(SetNoticeReq) returns (Response);
 
+  // 获取商户全部用户列表
+  rpc MerchantListUsers(MerchantListUsersReq) returns (MerchantListUsersResp);
+  // 获取商户全部预约人列表
+  rpc MerchantListReservers(MerchantListReserversReq) returns (MerchantListReserversResp);
+  // 获取商户全部足迹列表
+  rpc MerchantListViews(MerchantListViewsReq) returns (MerchantListViewsResp);
+  // 获取商户全部收藏列表
+  rpc MerchantListFavorites(MerchantListFavoritesReq) returns (MerchantListFavoritesResp);
+  // 获取商户全部预约列表
+  rpc MerchantListAllBookRecords(MerchantListAllBookRecordsReq) returns (MerchantListAllBookRecordsResp);
+
   // 添加预约人
   rpc CreateReserver(CreateReserverReq) returns (Response);
   // 删除预约人

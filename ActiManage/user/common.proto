@@ -168,6 +168,108 @@ message SetNoticeReq {
   string id = 1;
 }
 
+// 获取全部用户列表
+message MerchantListUsersReq {
+  basic.Paging paging = 1;
+  string merchantId = 2;
+}
+
+message MerchantListUsersResp {
+  repeated User users = 1;
+  int64 total = 2;
+}
+
+// 获取商家全部预约人
+message MerchantListReserversReq {
+  basic.Paging paging = 1;
+  string merchantId = 2;
+}
+
+message MerchantListReserversResp {
+  message Item {
+    Reserver reserver = 1;
+    string name = 2;
+    string avatar = 3;
+  }
+  repeated Item reservers = 1;
+  int64 total = 2;
+}
+
+// 获取商家全部活动浏览
+message MerchantListViewsReq {
+  basic.Paging paging = 1;
+  string merchantId = 2;
+}
+
+message MerchantListViewsResp {
+  message Item {
+    string id = 1;
+    string targetId = 2;
+    int64 targetType = 3;
+    string userId = 4;
+    string merchantId = 5;
+    int64 createTime = 6;
+    int64 updateTime = 7;
+    string username = 8;
+    string avatar = 9;
+  }
+  repeated Item views = 1;
+  int64 total = 2;
+}
+
+// 获取商家全部收藏列表
+message MerchantListFavoritesReq {
+  basic.Paging paging = 1;
+  string merchantId = 2;
+}
+
+// 获取商家全部收藏列表
+message MerchantListFavoritesResp {
+  message Item {
+    string id = 1;
+    string activityId = 2;
+    string userId = 3;
+    string merchantId = 4;
+    int64 createTime = 5;
+    int64 updateTime = 6;
+    string username = 7;
+    string avtar = 8;
+  }
+  repeated Item favorites = 1;
+  int64 total = 2;
+}
+
+// 获取商家全部预约列表
+message MerchantListAllBookRecordsReq {
+  basic.Paging paging = 1;
+  string merchantId = 2;
+}
+
+message MerchantListAllBookRecordsResp {
+  message Item {
+    string reserverId = 1;  // 预约人id
+    int64 cancel = 2;       // 0正常, 1取消
+    string name = 3;
+    string phone = 4;
+  }
+  message BookItem {
+    string id = 1;
+    string activityId = 2;
+    string userId = 3;
+    repeated Item reservers = 4;  // 预约人列表
+    int64 arrival = 5;
+    string remark = 6;
+    int64 createTime = 7;  // time, 创建时间
+    int64 updateTime = 8;  // time, 更新时间
+    int64 status = 10;     // int, 状态, 0正常, -1删除
+    string name = 11;      // 用户名
+    string avatar = 12;    // 用户头像
+  }
+
+  repeated BookItem bookRecords = 1;  // 预约记录列表
+  int64 total = 2;                    // 总记录数
+}
+
 // 添加预约人
 message CreateReserverReq {
   string userId = 1;
@@ -177,6 +279,7 @@ message CreateReserverReq {
   optional string phone = 5;      // 电话
   optional string email = 6;      // 邮箱
   optional int64 birth = 7;
+  string merchantId = 8;
 }
 
 // 删除预约人
@@ -320,6 +423,7 @@ message MarkReceiptReadReq {
 message DoFavoriteReq {
   string userId = 1;
   string activityId = 2;     // 活动ID
+  string merchantId = 3;
 }
 
 // 取消收藏
@@ -339,6 +443,7 @@ message CreateViewReq {
   string targetId = 1;
   int64 type = 2;
   string userId = 3;
+  string merchantId = 4;
 }
 
 // 增加访问
