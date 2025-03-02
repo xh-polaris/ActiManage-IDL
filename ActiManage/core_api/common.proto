@@ -603,9 +603,10 @@ message MerchantListUsersResp {
     string avatar = 3;
     int64 loginTime = 4;
     int64 createTime = 5;
-  }
-  repeated Item users = 1;
-  int64 total = 2;
+  }  int64 code = 1;
+  string msg = 2;
+  repeated Item users = 3;
+  int64 total = 4;
 }
 
 // 获取商家全部预约人
@@ -619,8 +620,10 @@ message MerchantListReserversResp {
     string name = 2;
     string avatar = 3;
   }
-  repeated Item reservers = 1;
-  int64 total = 2;
+  int64 code = 1;
+  string msg = 2;
+  repeated Item reservers = 3;
+  int64 total = 4;
 }
 
 // 获取商家全部活动浏览
@@ -639,8 +642,10 @@ message MerchantListViewsResp {
     string username = 7;
     string avatar = 8;
   }
-  repeated Item views = 1;
-  int64 total = 2;
+  int64 code = 1;
+  string msg = 2;
+  repeated Item views = 3;
+  int64 total = 4;
 }
 
 // 获取商家全部收藏列表
@@ -660,8 +665,10 @@ message MerchantListFavoritesResp {
     string username = 7;
     string avatar = 8;
   }
-  repeated Item favorites = 1;
-  int64 total = 2;
+  int64 code = 1;
+  string msg = 2;
+  repeated Item favorites = 3;
+  int64 total = 4;
 }
 
 // 获取商家全部预约列表
@@ -689,9 +696,10 @@ message MerchantListAllBookRecordsResp {
     string name = 11;      // 用户名
     string avatar = 12;    // 用户头像
   }
-
-  repeated BookItem bookRecords = 1;  // 预约记录列表
-  int64 total = 2;                    // 总记录数
+  int64 code = 1;
+  string msg = 2;
+  repeated BookItem bookRecords = 3;  // 预约记录列表
+  int64 total = 4;                    // 总记录数
 }
 
 // 获取商家新增用户数
@@ -705,7 +713,9 @@ message MerchantGetNewUserNumberResp {
     int64 number = 1;
     int64 timestamp = 2;
   }
-  repeated Item items = 1;
+  int64 code = 1;
+  string msg = 2;
+  repeated Item items = 3;
 }
 
 // 获取商家新增活动数
@@ -719,7 +729,9 @@ message MerchantGetActivityNumberResp {
     int64 number = 1;
     int64 timestamp = 2;
   }
-  repeated Item items = 1;
+  int64 code = 1;
+  string msg = 2;
+  repeated Item items = 3;
 }
 
 /*
