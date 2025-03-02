@@ -544,6 +544,7 @@ message ListActivityIdsByViewResp {
 message MerchantGetNewUserNumberReq {
   int64 from = 1;
   int64 to = 2;
+  string merchantId = 3;
 }
 
 message MerchantGetNewUserNumberResp {
