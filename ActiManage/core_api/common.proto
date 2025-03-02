@@ -636,7 +636,6 @@ message MerchantListViewsResp {
     string id = 1;
     string activityId = 2;
     string activityName = 3;
-    string activityCover = 4;
     string userId = 5;
     int64 createTime = 6;
     string username = 7;
@@ -659,7 +658,6 @@ message MerchantListFavoritesResp {
     string id = 1;
     string activityId = 2;
     string activityName = 3;
-    string activityCover = 4;
     string userId = 5;
     int64 createTime = 6;
     string username = 7;
@@ -695,6 +693,7 @@ message MerchantListAllBookRecordsResp {
     int64 status = 10;     // int, 状态, 0正常, -1删除
     string name = 11;      // 用户名
     string avatar = 12;    // 用户头像
+    string activityName = 13;
   }
   int64 code = 1;
   string msg = 2;
