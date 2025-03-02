@@ -189,7 +189,7 @@ message GetAdReq {
 message GetAdResp {
   int64 code = 1;
   string msg = 2;
-  Ad ad = 3;
+  Ad ad = 3;    // 广告
 }
 
 // 设置广告
