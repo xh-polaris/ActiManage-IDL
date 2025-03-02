@@ -395,6 +395,21 @@ message ListActivitiesByActivityIdResp {
   repeated Item items = 1;
 }
 
+// 获取商家新增活动数
+message MerchantGetActivityNumberReq {
+  int64 from = 1;
+  int64 to = 2;
+}
+
+message MerchantGetActivityNumberResp {
+  message Item {
+    int64 number = 1;
+    int64 timestamp = 2;
+  }
+  repeated Item items = 1;
+}
+
+
 //验证码
 message StsSendVerifyCodeReq {
   string authId = 1;

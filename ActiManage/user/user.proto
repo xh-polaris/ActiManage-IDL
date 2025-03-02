@@ -85,4 +85,7 @@ service UserService {
   rpc ListActivityIdByBookRecordRank(ListActivityIdsByBookRecordRankReq) returns (ListActivityIdsByBookRecordRankResp);
   // 获取单个商家的客户访问量折线图
   rpc GetViewDataByMerchant (GetViewDataByMerchantReq) returns (GetViewDataByMerchantResp);
+  // 获取当个商家新增客户数
+  rpc MerchantGetNewUserNumber (MerchantGetNewUserNumberReq) returns (MerchantGetNewUserNumberResp);
+
 }

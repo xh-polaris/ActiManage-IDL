@@ -540,6 +540,19 @@ message ListActivityIdsByViewResp {
   int64 total = 2;
 }
 
+// 获取商家新增用户数
+message MerchantGetNewUserNumberReq {
+  int64 from = 1;
+  int64 to = 2;
+}
+
+message MerchantGetNewUserNumberResp {
+  message Item {
+    int64 number = 1;
+    int64 timestamp = 2;
+  }
+  repeated Item items = 1;
+}
 
 
 // 统一响应

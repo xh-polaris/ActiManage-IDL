@@ -193,28 +193,39 @@ service merchant {
     option(basic.post) = "/merchant/password/set";
   }
 
-  // 获取全部用户列表
+  // 获取商家全部用户列表
   rpc MerchantListUsers(MerchantListUsersReq) returns (MerchantListUsersResp) {
     option(basic.post) = "/merchant/user/list";
   }
 
-  // 获取全部预约人列表
+  // 获取商家全部预约人列表
   rpc MerchantListReservers(MerchantListReserversReq) returns (MerchantListReserversResp) {
     option(basic.post) = "/merchant/reserver/list";
   }
 
-  // 获取全部足迹列表
+  // 获取商家全部足迹列表
   rpc MerchantListViews(MerchantListViewsReq) returns (MerchantListViewsResp) {
     option(basic.post) = "/merchant/view/list";
   }
 
-  // 获取全部收藏列表
+  // 获取商家全部收藏列表
   rpc MerchantListFavorites(MerchantListFavoritesReq) returns (MerchantListFavoritesResp) {
     option(basic.post) = "/merchant/favorite/list";
   }
 
+  // 获取商家全部预约记录
   rpc MerchantListAllBookRecords(MerchantListAllBookRecordsReq) returns (MerchantListAllBookRecordsResp) {
     option(basic.post) = "/merchant/book/list_all";
+  }
+
+  // 获取商家新增客户量
+  rpc MerchantGetNewUserNumber (MerchantGetNewUserNumberReq) returns (MerchantGetNewUserNumberResp) {
+    option(basic.post) = "/merchant/dashboard/new_user";
+  }
+
+  // 获取商家活动数量变化
+  rpc MerchantGetActivityNumber(MerchantGetActivityNumberReq) returns (MerchantGetActivityNumberResp) {
+    option(basic.post) = "/merchant/dashboard/activity_number";
   }
 }
 
