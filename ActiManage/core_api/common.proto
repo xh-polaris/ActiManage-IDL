@@ -603,7 +603,11 @@ message MerchantListUsersResp {
     string avatar = 3;
     int64 loginTime = 4;
     int64 createTime = 5;
-  }  int64 code = 1;
+    int64 book = 6;
+    int64 view = 7;
+    int64 favorite = 8;
+  }
+  int64 code = 1;
   string msg = 2;
   repeated Item users = 3;
   int64 total = 4;

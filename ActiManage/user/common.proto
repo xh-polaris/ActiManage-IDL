@@ -175,8 +175,15 @@ message MerchantListUsersReq {
 }
 
 message MerchantListUsersResp {
+  message Item {
+    int64 book = 1;
+    int64 view = 2;
+    int64 favorite = 3;
+  }
   repeated User users = 1;
   int64 total = 2;
+  repeated Item infos = 3;
+
 }
 
 // 获取商家全部预约人
