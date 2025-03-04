@@ -54,6 +54,8 @@ service SystemService {
   rpc GetMerchantMoreInfo(GetMerchantMoreInfoReq) returns (GetMerchantMoreInfoResp);
   // 更新商家额外信息
   rpc UpdateMerchantMoreInfo(UpdateMerchantMoreInfoReq) returns (Response);
+  // 重置商家密码
+  rpc ResetMerchantPassword(ResetMerchantPasswordReq) returns (Response);
 
   // 获取商家总数折线图
   rpc GetMerchantTotalData (GetMerchantTotalDataReq) returns (GetMerchantTotalDataResp);

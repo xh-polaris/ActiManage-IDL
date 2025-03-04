@@ -279,6 +279,8 @@ service system {
     option(basic.post) = "/system/dashboard/overall";
   }
 
+  // 重置商家密码
+  rpc ResetMerchantPassword(ResetMerchantPasswordReq) returns (Response);
 }
 
 service sts {

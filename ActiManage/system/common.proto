@@ -275,6 +275,12 @@ message AdminSetPasswordReq{
   string newPassword = 3;
 }
 
+// 重置商家密码
+message ResetMerchantPasswordReq {
+  string merchantId = 1;
+  string newPassword = 2 ;
+}
+
 // 创建商家账号
 message CreateMerchantReq {
   string adminId = 1;      // 管理员id

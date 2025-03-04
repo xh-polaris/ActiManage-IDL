@@ -774,6 +774,12 @@ message SystemLoginResp {
   int64 expireTime = 5;
 }
 
+// 重置商家密码
+message ResetMerchantPasswordReq {
+  string merchantId = 1;
+  string newPassword = 2 ;
+}
+
 // 获取商家列表
 message SystemListMerchantsReq {
   basic.Paging paging = 1;
