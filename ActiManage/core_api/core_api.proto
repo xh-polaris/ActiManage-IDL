@@ -280,7 +280,9 @@ service system {
   }
 
   // 重置商家密码
-  rpc ResetMerchantPassword(ResetMerchantPasswordReq) returns (Response);
+  rpc ResetMerchantPassword(ResetMerchantPasswordReq) returns (Response) {
+    option(basic.post) = "/system/merchant/reset";
+  }
 }
 
 service sts {
