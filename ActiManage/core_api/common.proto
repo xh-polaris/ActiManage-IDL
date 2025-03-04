@@ -743,9 +743,11 @@ message GetMerchantMoreInfoReq {
 }
 
 message GetMerchantMoreInfoResp {
-  string questions = 1;
-  string privacyAgreement = 2;
-  string userAgreement = 3;
+  int64 code = 1;
+  string msg = 2;
+  string questions = 3;
+  string privacyAgreement = 4;
+  string userAgreement = 5;
 }
 
 // 更新商家额外信息
