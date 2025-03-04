@@ -279,6 +279,7 @@ message AdminSetPasswordReq{
 message ResetMerchantPasswordReq {
   string merchantId = 1;
   string newPassword = 2 ;
+  string adminId = 3;
 }
 
 // 创建商家账号
