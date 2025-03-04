@@ -50,6 +50,10 @@ service SystemService {
   rpc GetMerchantInfo(GetMerchantInfoReq) returns (GetMerchantInfoResp);
   // 获取商家列表
   rpc ListMerchants(ListMerchantsReq) returns (ListMerchantsResp);
+  // 获取商家额外信息
+  rpc GetMerchantMoreInfo(GetMerchantMoreInfoReq) returns (GetMerchantMoreInfoResp);
+  // 更新商家额外信息
+  rpc UpdateMerchantMoreInfo(UpdateMerchantMoreInfoReq) returns (Response);
 
   // 获取商家总数折线图
   rpc GetMerchantTotalData (GetMerchantTotalDataReq) returns (GetMerchantTotalDataResp);

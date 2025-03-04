@@ -317,6 +317,25 @@ message GetMerchantInfoResp {
   string uri = 15;
 }
 
+// 获取商家额外信息
+message GetMerchantMoreInfoReq {
+  string merchantId = 1;
+}
+
+message GetMerchantMoreInfoResp {
+  string questions = 1;
+  string privacyAgreement = 2;
+  string userAgreement = 3;
+}
+
+// 更新商家额外信息
+message UpdateMerchantMoreInfoReq {
+  string merchantId = 1;
+  string questions = 2;
+  string privacyAgreement = 3;
+  string userAgreement = 4;
+}
+
 // 获取商家列表
 message ListMerchantsReq {
   basic.Paging paging = 1;

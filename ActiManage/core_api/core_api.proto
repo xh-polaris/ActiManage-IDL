@@ -227,6 +227,16 @@ service merchant {
   rpc MerchantGetActivityNumber(MerchantGetActivityNumberReq) returns (MerchantGetActivityNumberResp) {
     option(basic.post) = "/merchant/dashboard/activity_number";
   }
+
+  // 获取商家额外信息
+  rpc GetMerchantMoreInfo(GetMerchantMoreInfoReq) returns (GetMerchantMoreInfoResp) {
+    option(basic.post) = "/merchant/more/get";
+  }
+
+  // 更新商家额外信息
+  rpc UpdateMerchantMoreInfo(UpdateMerchantMoreInfoReq) returns (Response) {
+    option(basic.post) = "/merchant/more/update";
+  }
 }
 
 service system {

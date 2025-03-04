@@ -737,6 +737,25 @@ message MerchantGetActivityNumberResp {
   repeated Item items = 3;
 }
 
+// 获取商家额外信息
+message GetMerchantMoreInfoReq {
+  string merchantId = 1;
+}
+
+message GetMerchantMoreInfoResp {
+  string questions = 1;
+  string privacyAgreement = 2;
+  string userAgreement = 3;
+}
+
+// 更新商家额外信息
+message UpdateMerchantMoreInfoReq {
+  string questions = 1;
+  string privacyAgreement = 2;
+  string userAgreement = 3;
+}
+
+
 /*
  * 系统部分
  */
