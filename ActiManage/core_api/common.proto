@@ -533,6 +533,7 @@ message MerchantUpdateInfoReq {
   Location location = 4;
   repeated Opening openings = 5;
   repeated string licences = 6;
+  string logo = 7;
 }
 
 // 获取商家信息
@@ -813,6 +814,8 @@ message SystemGetMerchantResp {
   Location location = 6;
   repeated Opening openings = 7;
   repeated string licences = 8;
+  string uri = 9;
+  string logo = 10;
 }
 
 // 添加商户
