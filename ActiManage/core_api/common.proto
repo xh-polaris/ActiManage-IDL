@@ -573,6 +573,8 @@ message GetMerchantInfoByUriResp {
   string msg = 2;
   string merchantId = 3;
   Ad ad = 4;
+  string logo = 5;
+  string name = 6;
 }
 
 // 获取广告
