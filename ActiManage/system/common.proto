@@ -40,6 +40,8 @@ message Merchant {
   int64 updateTime = 11;  // 更新时间
   int64 deleteTime = 12;  // 删除时间
   int64 status = 13;       // 状态, 0正常, -1删除
+  int64 establish = 14;    // 成立时间
+  int64 capital = 15;      // 资本金
 }
 
 // 页眉设置
@@ -148,6 +150,8 @@ message UpdateMerchantInfoReq {
   Location location = 5;
   string description = 6;
   repeated string licences = 7;
+  int64 establish = 8;    // 成立时间
+  int64 capital = 9;      // 资本金
 }
 
 // 更新页面设置
@@ -295,6 +299,8 @@ message CreateMerchantReq {
   repeated string licences = 7; // 证件照片
   string logo = 8;
   string uri = 9;
+  int64 establish = 10;    // 成立时间
+  int64 capital = 11;      // 资本金
 }
 
 // 更新商家信息
@@ -324,6 +330,8 @@ message GetMerchantInfoResp {
   int64 deleteTime = 13;  // 删除时间
   int64 status = 14;       // 状态, 0正常, -1删除
   string uri = 15;
+  int64 establish = 16;    // 成立时间
+  int64 capital = 17;      // 资本金
 }
 
 // 获取商家额外信息

@@ -359,6 +359,8 @@ message GetMerchantInfoResp {
   int64 deleteTime = 12;  // 删除时间
   int64 status = 13;       // 状态, 0正常, -1删除
   string uri = 14;
+  int64 establish = 15;    // 成立时间
+  int64 capital = 16;      // 资本金
 }
 
 
@@ -534,6 +536,8 @@ message MerchantUpdateInfoReq {
   repeated Opening openings = 5;
   repeated string licences = 6;
   string logo = 7;
+  int64 establish = 8;    // 成立时间
+  int64 capital = 9;      // 资本金
 }
 
 // 获取商家信息
@@ -555,6 +559,8 @@ message MerchantGetInfoResp {
   int64 deleteTime = 12;  // 删除时间
   int64 status = 13;       // 状态, 0正常, -1删除
   string uri = 14;
+  int64 establish = 15;    // 成立时间
+  int64 capital = 16;      // 资本金
 }
 
 // 设置密码
@@ -818,6 +824,8 @@ message SystemGetMerchantResp {
   repeated string licences = 8;
   string uri = 9;
   string logo = 10;
+  int64 establish = 11;    // 成立时间
+  int64 capital = 12;      // 资本金
 }
 
 // 添加商户
@@ -830,6 +838,8 @@ message SystemCreateMerchantReq {
   repeated string licences = 8;
   string logo = 9;
   string uri = 10;
+  int64 establish = 11;    // 成立时间
+  int64 capital = 12;      // 资本金
 }
 
 // 修改商户信息
@@ -843,6 +853,8 @@ message SystemUpdateMerchantReq {
   repeated string licences = 8;
   string logo = 9;
   int64 status = 10;
+  int64 establish = 11;    // 成立时间
+  int64 capital = 12;      // 资本金
 }
 
 
