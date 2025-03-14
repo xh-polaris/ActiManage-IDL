@@ -283,6 +283,11 @@ service system {
   rpc ResetMerchantPassword(ResetMerchantPasswordReq) returns (Response) {
     option(basic.post) = "/system/merchant/reset";
   }
+
+  // 删除商户
+  rpc DeleteMerchant (DeleteMerchantReq) returns (Response) {
+    option(basic.post) = "/system/merchant/delete";
+  }
 }
 
 service sts {

@@ -857,6 +857,10 @@ message SystemUpdateMerchantReq {
   int64 capital = 12;      // 资本金
 }
 
+// 删除商家
+message DeleteMerchantReq {
+  string id = 1;
+}
 
 //获取某个商家数据看板
 message SystemGetDashboardReq {
